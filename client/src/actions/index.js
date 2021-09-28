@@ -9,3 +9,10 @@ export function getDogs(){
         }) 
     }
 }
+
+export function filterByTemperament(payload){
+    return {
+        type: 'FILTER_BY_TEMP',
+        payload
+    }
+}
