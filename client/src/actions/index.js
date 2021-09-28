@@ -10,9 +10,19 @@ export function getDogs(){
     }
 }
 
+export function getTemperaments(){
+    return async function(dispatch){
+        let json = await axios('http://localhost:3001/temperament');
+        return dispatch({
+            type: 'GET_TEMPERAMENTS',
+            payload: json.data
+        })
+    }
+}
+
 export function filterByTemperament(payload){
     return {
-        type: 'FILTER_BY_TEMP',
+        type: 'FILTER_BY_TEMPERAMENT',
         payload
     }
 }

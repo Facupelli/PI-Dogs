@@ -12,7 +12,7 @@ export default function Card({name, image, temperament, weight}) {
             <h4>Weight</h4>
             <div>
                 <p>Min: {weightSplit[0]}kg </p>
-                <p>Max: {weightSplit[1]}kg </p>
+                <p>Max: {weightSplit[1]} kg </p>
             </div>            
         </div>
     )

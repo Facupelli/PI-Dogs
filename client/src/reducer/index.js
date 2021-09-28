@@ -1,6 +1,8 @@
 
 const initialState = {
-    dogs : []
+    allDogs : [],
+    dogs : [],
+    temperaments : []
 } 
 
 function rootReducer (state = initialState, action){
@@ -8,13 +10,20 @@ function rootReducer (state = initialState, action){
         case 'GET_DOGS':
             return{
                 ...state,
-                dogs: action.payload
+                dogs: action.payload,
+                allDogs: action.payload
             }
-        case 'FILTER_BY_TEMP':
-            const allDogs = state.dogs;
-            const tempFiltered = action.payload
+        case 'GET_TEMPERAMENTS':
             return{
-
+                ...state,
+                temperaments: action.payload
+            }
+        case 'FILTER_BY_TEMPERAMENT':
+            const allDogs = state.allDogs;
+            
+            return{
+                ...state,
+                dogs: allDogs
             }
         default:
             return state;

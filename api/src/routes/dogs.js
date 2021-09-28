@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express.Router();
-const { getAllDogs } = require('../infoapi/infoapi')
+const { getAllDogs } = require('../infoapi/infoapi');
+const { Dog, Temperament } = require('../db');
+
   
   router.get("/", async (req, res) => {
     const name = req.query.name;
@@ -24,22 +26,20 @@ const { getAllDogs } = require('../infoapi/infoapi')
   });
 
 
-// router.post("/dog", (req, res) => {
-//   const { name, height, weight, life_span, createdInDb, temperament } = req.body;
+router.post("/", async (req, res) => {
+  const { name, height, weight, life_span, createdInDb, temperament } = req.body;
 
-//   let dogCreated = await Dog.create({
-//     name,
-//     height,
-//     weight,
-//     life_span,
-//     createdInDb,
-//   });
+  let dogCreated = await Dog.create({
+    name,
+    height,
+    weight,
+    life_span,
+    createdInDb,
+  });
 
-//   let temperamentDb = await Temperament.findAll({
-//       where: {name: temperament}
-//   });
-//   dogCreated.addTemperament(temperamentDb);
-//   res.send('Raza creada correctamente')
-// });
+  let temperamentDb = await Temperament.findAll({ where: {name: temperament} }); //busco el temperament de la lista de temperaments
+  dogCreated.addTemperament(temperamentDb);
+  res.send('Breed created correctly')
+});
 
 module.exports = router;

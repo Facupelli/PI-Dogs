@@ -4,10 +4,10 @@ const { Temperament } = require("../db");
 const {getApiInfo} = require('../infoapi/infoapi');
 
 router.get("/", async (req, res) => {
-    const temperamentApi = await getApiInfo();
-    const temperament = temperamentApi.map((el) => el.temperament);
-    const temp = temperament.filter((el) => el).map((el) => el.split(","));
-    const tempEach = temp.map((el) => {
+    const api = await getApiInfo();
+    const temperament = api.map((el) => el.temperament);
+    const filterTemp = temperament.filter((el) => el).map((el) => el.split(","));
+    const tempEach = filterTemp.map((el) => {
       for (let i = 0; i < el.length; i++) return el[i];
     });
     tempEach.forEach((el) => {
