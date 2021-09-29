@@ -29,17 +29,22 @@ const { Dog, Temperament } = require('../db');
 router.post("/", async (req, res) => {
   const { name, height, weight, life_span, createdInDb, temperament } = req.body;
 
-  let dogCreated = await Dog.create({
-    name,
-    height,
-    weight,
-    life_span,
-    createdInDb,
-  });
-
-  let temperamentDb = await Temperament.findAll({ where: {name: temperament} }); //busco el temperament de la lista de temperaments
-  dogCreated.addTemperament(temperamentDb);
-  res.send('Breed created correctly')
+  try{
+    let dogCreated = await Dog.create({
+      name,
+      height,
+      weight,
+      life_span,
+      createdInDb,
+    });
+  
+    let temperamentDb = await Temperament.findAll({ where: {name: temperament} }); //busco el temperament de la lista de temperaments
+    dogCreated.addTemperament(temperamentDb);
+    res.send('Breed created correctly')
+  }catch(error){
+    res.send(error)
+  }
+  
 });
 
 module.exports = router;

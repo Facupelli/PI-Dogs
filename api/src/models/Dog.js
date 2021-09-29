@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('dog', {
     id: {
-      type: DataTypes.UUID, //id especifico con letras y numeros
+      type: DataTypes.UUID, //id especifico con letras y numeros unico
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true
@@ -32,5 +32,7 @@ module.exports = (sequelize) => {
       defaultValue: true
     }
 
+  },{
+    timestamps: false
   });
 };

@@ -14,6 +14,8 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1); //arranco en la pagina 1
   const [dogsPerPage, setDogsPerPage] = useState(8); //cuantos perros por pagina
 
+  const [order, setOrder] = useState('');
+
   const lastDog = currentPage * dogsPerPage;
   const firstDog = lastDog - dogsPerPage;
   const currentDogs = allDogs.slice(firstDog, lastDog); //me trae del reducer el state
@@ -32,7 +34,11 @@ export default function Home() {
       <h1>THE DOG APP</h1>
       <div>
 
-        <Filters />
+        <Filters 
+          setCurrentPage={setCurrentPage}
+          order={order}
+          setOrder={setOrder}
+         />
 
         {currentDogs &&
           currentDogs.map((el) => {
@@ -43,7 +49,8 @@ export default function Home() {
                     name={el.name}
                     image={el.image}
                     temperament={el.temperament}
-                    weight={el.weight}
+                    min_weight={el.min_weight}
+                    max_weight={el.max_weight}
                   />
                 </Link>
               </div>

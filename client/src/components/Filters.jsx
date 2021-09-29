@@ -1,11 +1,9 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTemperaments } from "../actions";
-import { filterByTemperament } from "../actions";
+import { filterCreated, getTemperaments, filterByTemperament, orderByBreed, orderByWeight } from "../actions";
 import axios from 'axios'
 
-export default function Filters() {
+export default function Filters({setCurrentPage, order, setOrder}) {
 
 
     const dispatch = useDispatch();
@@ -16,7 +14,27 @@ export default function Filters() {
       }, []);
 
     function handleFilterTemps(e){
+      e.preventDefault();
         dispatch(filterByTemperament(e.target.value));
+    }
+
+    function handleFilterCreated(e){
+      e.preventDefault();
+      dispatch(filterCreated(e.target.value));
+    }
+
+    function handleOrderByBreed(e){
+      e.preventDefault();
+      dispatch(orderByBreed(e.target.value));
+      setCurrentPage(1);
+      setOrder(`Ordenado ${e.target.value}`)
+    }
+
+    function handleOrderByWeight(e){
+      e.preventDefault();
+      dispatch(orderByWeight(e.target.value));
+      setCurrentPage(1);
+      setOrder(`Ordenado ${e.target.value}`)
     }
 
     // async function temperaments() {
@@ -36,17 +54,17 @@ export default function Filters() {
             )
         })}
       </select>
-      <select>
-        <option value="Raza">Breed</option>
-        <option value="created">Created Breed</option>
+      <select onChange={e => handleFilterCreated(e)} >
+        <option value="api_breed">Api Breed</option>
+        <option value="created_breed">Created Breed</option>
       </select>
-      <select>
-        <option value="raza_asc">Breed Ascendente</option>
-        <option value="raza_desc">Breed Descendente</option>
+      <select onChange={e => handleOrderByBreed(e)} >
+        <option value="breed_asc">Breed Ascendente</option>
+        <option value="breed_desc">Breed Descendente</option>
       </select>
-      <select>
-        <option value="peso_asc">Weight Ascendente</option>
-        <option value="peso_desc">Weight Descendente</option>
+      <select onChange={e => handleOrderByWeight(e)} >
+        <option value="weight_asc">Weight Ascendente</option>
+        <option value="weight_desc">Weight Descendente</option>
       </select>
     </div>
   );

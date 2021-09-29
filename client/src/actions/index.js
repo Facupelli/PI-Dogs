@@ -26,3 +26,24 @@ export function filterByTemperament(payload){
         payload
     }
 }
+
+export function filterCreated(payload){
+    return {
+        type: 'FILTER_CREATED',
+        payload
+    }
+}
+
+export function orderByBreed(payload){
+    return{
+        type: 'ORDER_BY_BREED',
+        payload
+    }
+}
+
+export function orderByWeight(payload){
+    return{
+        type: 'ORDER_BY_WEIGHT',
+        payload
+    }
+}

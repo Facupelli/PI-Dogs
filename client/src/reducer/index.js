@@ -25,6 +25,61 @@ function rootReducer (state = initialState, action){
                 ...state,
                 dogs: allDogs
             }
+        case 'FILTER_CREATED':
+            const allDoggys = state.allDogs;
+            const filter = action.payload === 'created_breed' ? allDoggys.filter(d => d.createdInDb) : allDoggys.filter(d => !d.createdInDb);
+            return{
+                ...state,
+                dogs: filter
+            }
+        case 'ORDER_BY_BREED':
+            const sortedByBreed = action.payload === 'breed_asc' ?
+                state.dogs.sort(function(a,b){ 
+                    if(a.name > b.name){
+                        return 1; 
+                    }
+                    if(b.name > a.name){
+                        return -1;
+                    }
+                    return 0;
+                }) :
+                state.dogs.sort(function(a,b){
+                    if(a.name > b.name){
+                        return -1; 
+                    }
+                    if(b.name > a.name){
+                        return 1;
+                    }
+                    return 0;
+                })
+            return{
+                ...state,
+                dogs: sortedByBreed
+            }
+        case 'ORDER_BY_WEIGHT':
+            const sortedByWeight = action.payload === 'weight_asc' ?
+                state.dogs.sort(function(a,b){
+                    if(a.min_weight > b.min_weight){
+                        return 1; 
+                    }
+                    if(b.min_weight > a.min_weight){
+                        return -1;
+                    }
+                    return 0;
+                }) :
+                state.dogs.sort(function(a,b){
+                    if(a.min_weight > b.min_weight){
+                        return -1; 
+                    }
+                    if(b.min_weight > a.min_weight){
+                        return 1;
+                    }
+                    return 0;
+                })
+            return{
+                ...state,
+                dogs: sortedByWeight
+            }
         default:
             return state;
     }

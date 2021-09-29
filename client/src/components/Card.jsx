@@ -1,9 +1,6 @@
 import React from 'react';
 
-export default function Card({name, image, temperament, weight}) {
-
-    const weightSplit = weight.split('-');
-
+export default function Card({name, image, temperament, min_weight, max_weight}) {
     return(
         <div>
             <img src={image} alt='img not found' width='200px' height='200px' />
@@ -11,8 +8,8 @@ export default function Card({name, image, temperament, weight}) {
             <h4>{temperament}</h4>
             <h4>Weight</h4>
             <div>
-                <p>Min: {weightSplit[0]}kg </p>
-                <p>Max: {weightSplit[1]} kg </p>
+                <p>Min: {min_weight} kg </p>
+                <p>Max: {max_weight} kg </p>
             </div>            
         </div>
     )
