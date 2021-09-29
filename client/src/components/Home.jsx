@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Card from "./Card";
 import Paginado from "./Paginado";
 import Filters from './Filters'
+import SearchBar from "./SearchBar";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -33,6 +34,8 @@ export default function Home() {
       <Link to="/dog">Crear Raza</Link>
       <h1>THE DOG APP</h1>
       <div>
+
+        <SearchBar/>
 
         <Filters 
           setCurrentPage={setCurrentPage}
