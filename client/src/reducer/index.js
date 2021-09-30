@@ -80,6 +80,12 @@ function rootReducer (state = initialState, action){
                 ...state,
                 dogs: sortedByWeight
             }
+        case 'GET_DOGS_BY_BREED':
+            const dogsByBreed = state.allDogs.filter(d => d.name.includes(action.payload));
+            return{
+                ...state,
+                dogs: dogsByBreed
+            }
         default:
             return state;
     }

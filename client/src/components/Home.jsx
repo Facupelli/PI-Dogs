@@ -27,7 +27,7 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(getDogs()); // es lo mismo que mapDispatchToProps
-  }, []);
+  }, []); // dependencias
 
   return (
     <div>
@@ -35,7 +35,9 @@ export default function Home() {
       <h1>THE DOG APP</h1>
       <div>
 
-        <SearchBar/>
+        <SearchBar
+          setCurrentPage={setCurrentPage}
+        />
 
         <Filters 
           setCurrentPage={setCurrentPage}

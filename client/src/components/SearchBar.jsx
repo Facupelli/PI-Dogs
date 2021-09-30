@@ -1,10 +1,13 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getDogsByBreed } from "../actions";
 
-export default function () {
+export default function ({setCurrentPage}) {
   
   const allDogs = useSelector((state) => state.dogs);
+  const dispatch = useDispatch();
+
 
   const [title, setTitle] = useState("");
   
@@ -14,13 +17,15 @@ export default function () {
 
   function handleSubmit(e){
       e.preventDefault();
-      getDogsByBreed(title)
+      dispatch(getDogsByBreed(title))
+      setTitle('');
+      setCurrentPage(1);
   };
 
-  const getDogsByBreed = async() => {
-    console.log(title);
-    return allDogs.filter(d => d.name.includes(title));
-  }
+//   const getDogsByBreed = async() => {
+//     console.log(title);
+//     return allDogs.filter(d => d.name.includes(title));
+//   }
  
   return (
     <div>

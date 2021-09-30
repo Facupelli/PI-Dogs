@@ -47,3 +47,10 @@ export function orderByWeight(payload){
         payload
     }
 }
+
+export function getDogsByBreed(payload){
+    return{
+        type: 'GET_DOGS_BY_BREED',
+        payload
+    }
+}
