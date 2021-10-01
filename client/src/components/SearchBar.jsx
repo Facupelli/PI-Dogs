@@ -13,11 +13,16 @@ export default function ({setCurrentPage}) {
   
   function handleSearch(e){
       setTitle(e.target.value)
+
+    //BUSQUEDA MIENTRAS SE ESCRIBE
+    //   dispatch(getDogsByBreed(title));
+    //   setCurrentPage(1);
+
   };
 
   function handleSubmit(e){
       e.preventDefault();
-      dispatch(getDogsByBreed(title))
+      dispatch(getDogsByBreed(title));
       setTitle('');
       setCurrentPage(1);
   };

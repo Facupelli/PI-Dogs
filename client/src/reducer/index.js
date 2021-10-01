@@ -81,7 +81,7 @@ function rootReducer (state = initialState, action){
                 dogs: sortedByWeight
             }
         case 'GET_DOGS_BY_BREED':
-            const dogsByBreed = state.allDogs.filter(d => d.name.includes(action.payload));
+            const dogsByBreed = state.allDogs.filter(d => d.name.toLowerCase().includes(action.payload.toLowerCase()));
             return{
                 ...state,
                 dogs: dogsByBreed

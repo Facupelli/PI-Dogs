@@ -49,15 +49,15 @@ export default function Home() {
           currentDogs.map((el) => {
             return (
               <div>
-                <Link to={"/home/" + el.id}>
                   <Card
+                    id={el.id}
                     name={el.name}
                     image={el.image}
                     temperament={el.temperament}
                     min_weight={el.min_weight}
                     max_weight={el.max_weight}
                   />
-                </Link>
+                
               </div>
             );
           })}
