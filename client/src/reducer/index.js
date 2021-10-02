@@ -1,3 +1,4 @@
+import axios from 'axios';
 
 const initialState = {
     allDogs : [],
@@ -19,16 +20,12 @@ function rootReducer (state = initialState, action){
                 temperaments: action.payload
             }
         case 'FILTER_BY_TEMPERAMENT':
-            console.log(state.allDogs);
-            console.log(typeof state.allDogs[1].temperament)
-            console.log(typeof state.allDogs[1].name)    
-
-
+            
             let filterByTemp
             if(action.payload === 'All'){
                 filterByTemp = state.allDogs;
             }else{
-                filterByTemp = state.allDogs.map(d => d.temperament).filter(d => d.includes(action.payload));
+                filterByTemp = state.allDogs.filter(d => d.temperament.includes(action.payload));
             }
             
             return{

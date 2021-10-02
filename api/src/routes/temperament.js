@@ -19,4 +19,5 @@ router.get("/", async (req, res) => {
     res.send(allTemperaments);
   });
 
+
   module.exports = router;

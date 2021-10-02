@@ -7,15 +7,15 @@ const { API_KEY } = process.env;
 
 export default function Detail() {
 
-  const allDogs = useSelector((state) => state.allDogs);
+  const allOfDogs = useSelector((state) => state.allDogs);
 
     const {id} = useParams(); 
-    console.log(id);
-    console.log(allDogs);
+    console.log(typeof id);
+    console.log(allOfDogs);
 
-    const dogBreed = allDogs.filter(d => d.id === id);
-    
+    const dogBreed = allOfDogs.filter(d => d.id === Number(id));
     console.log(dogBreed);
+    console.log(dogBreed[0].name);
 
     // const dogDetail = async() => {
     //     const dog = axios(`https://api.thedogapi.com/v1/breeds/search?q=${dogBreed}?api_key=${API_KEY}`);
@@ -34,21 +34,25 @@ export default function Detail() {
   return (
     <div>
       <h3>CARD DETAIL</h3>
+      <p>Breed:</p>
+      <p>{dogBreed[0].name}</p>
       <img
-        src={dogBreed.image}
+        src={dogBreed[0].image}
         alt="img not found"
         width="200px"
         height="200px"
       />
-      <p>{dogBreed.name}</p>
-      <p>{dogBreed.temperament}</p>
+      <p>Temperament:</p>
+      <p>{dogBreed[0].temperament}</p>
       <p>Weight</p>
       <div>
-        <p>Min: {dogBreed.min_weight} kg </p>
-        <p>Max: {dogBreed.max_weight} kg </p>
+        <p>Min: {dogBreed[0].min_weight} kg </p>
+        <p>Max: {dogBreed[0].max_weight} kg </p>
       </div>
-      <p>{dogBreed.height}</p>
-      <p>{dogBreed.life_span}</p>
+      <p>Height:</p>
+      <p>{dogBreed[0].height}</p>
+      <p>Life Span:</p>
+      <p>{dogBreed[0].life_span}</p>
     </div>
   );
 }

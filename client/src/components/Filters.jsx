@@ -15,7 +15,7 @@ export default function Filters({setCurrentPage, order, setOrder}) {
 
     function handleFilterTemps(e){
       e.preventDefault();
-        dispatch(filterByTemperament(e.target.value));
+      dispatch(filterByTemperament(e.target.value));
     }
 
     function handleFilterCreated(e){
@@ -36,12 +36,6 @@ export default function Filters({setCurrentPage, order, setOrder}) {
       setCurrentPage(1);
       setOrder(`Ordenado ${e.target.value}`)
     }
-
-    // async function temperaments() {
-    //   let allTemperaments = await axios('http://localhost:3001/temperament');
-    //   let temps = allTemperaments.data;
-    //   return temps;
-    // }
 
   return (
     <div>
