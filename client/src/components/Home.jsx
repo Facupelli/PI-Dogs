@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <div>
-      <Link to="/dog">Crear Raza</Link>
+      <Link to="/createbreed">Crear Raza</Link>
       <h1>THE DOG APP</h1>
       <div>
 

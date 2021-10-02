@@ -1,4 +1,3 @@
-import axios from 'axios';
 
 const initialState = {
     allDogs : [],
@@ -93,8 +92,12 @@ function rootReducer (state = initialState, action){
                 ...state,
                 dogs: dogsByBreed
             }
+        case 'POST_BREED':
+            return{
+                ...state,
+            }
         default:
-            return state;
+            return state
     }
 }
 

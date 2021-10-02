@@ -2,20 +2,20 @@ import axios from 'axios';
 
 export function getDogs(){
     return async function(dispatch){
-        let json = await axios('http://localhost:3001/dogs');
+        let info = await axios('http://localhost:3001/dogs');
         return dispatch({
             type: 'GET_DOGS',
-            payload: json.data
+            payload: info.data
         }) 
     }
 }
 
 export function getTemperaments(){
     return async function(dispatch){
-        let json = await axios('http://localhost:3001/temperament');
+        let info = await axios('http://localhost:3001/temperament');
         return dispatch({
             type: 'GET_TEMPERAMENTS',
-            payload: json.data
+            payload: info.data
         })
     }
 }
@@ -52,5 +52,13 @@ export function getDogsByBreed(payload){
     return{
         type: 'GET_DOGS_BY_BREED',
         payload
+    }
+}
+
+export function postBreed(payload){
+    return async function(dispatch) {
+        const response = await axios.post('http://localhost:3001/dogs', payload);
+        console.log(response);
+        return response;
     }
 }

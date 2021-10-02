@@ -1,11 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getDogsByBreed } from "../actions";
 
-export default function ({setCurrentPage}) {
+export default function SearchBar ({setCurrentPage}) {
   
-  const allDogs = useSelector((state) => state.dogs);
+  // const allDogs = useSelector((state) => state.dogs);
   const dispatch = useDispatch();
 
 
