@@ -19,11 +19,21 @@ function rootReducer (state = initialState, action){
                 temperaments: action.payload
             }
         case 'FILTER_BY_TEMPERAMENT':
-            const allDogs = state.allDogs;
+            console.log(state.allDogs);
+            console.log(typeof state.allDogs[1].temperament)
+            console.log(typeof state.allDogs[1].name)    
+
+
+            let filterByTemp
+            if(action.payload === 'All'){
+                filterByTemp = state.allDogs;
+            }else{
+                filterByTemp = state.allDogs.map(d => d.temperament).filter(d => d.includes(action.payload));
+            }
             
             return{
                 ...state,
-                dogs: allDogs
+                dogs: filterByTemp
             }
         case 'FILTER_CREATED':
             const allDoggys = state.allDogs;

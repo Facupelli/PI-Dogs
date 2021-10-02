@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterCreated, getTemperaments, filterByTemperament, orderByBreed, orderByWeight } from "../actions";
-import axios from 'axios'
+// import axios from 'axios'
 
 export default function Filters({setCurrentPage, order, setOrder}) {
 
