@@ -34,9 +34,9 @@ export default function CreateBreed() {
         </div>
         <div>
           <label>Max height:</label>
-          <input type="text" name="max_height" value={input.max_height}/>
+          <input type="text" name="max_height" value={input.max_height} />
           <label>Min height:</label>
-          <input type="text" name="min_height" value={input.min_height}/>
+          <input type="text" name="min_height" value={input.min_height} />
         </div>
         <div>
           <label>Max weight:</label>
@@ -49,7 +49,16 @@ export default function CreateBreed() {
           <input type="text" name="life_span" value={input.life_span} />
         </div>
         <div>
-          <button>Submit</button>
+          <label>Temperaments:</label>
+          <select>
+            {temperaments &&
+              temperaments.map((el) => {
+                return <option value={el.name}>{el.name}</option>;
+              })}
+          </select>
+        </div>
+        <div>
+          <button type='submit'>Create Breed</button>
         </div>
       </form>
     </div>
