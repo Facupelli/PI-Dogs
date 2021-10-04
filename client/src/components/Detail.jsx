@@ -3,11 +3,21 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 
 export default function Detail() {
-  const allOfDogs = useSelector((state) => state.allDogs);
+  const allDogs = useSelector((state) => state.allDogs);
 
   const { id } = useParams();
+  const regExp = /[a-zA-Z]/g;
 
-  const dogBreed = allOfDogs.filter((d) => d.id === Number(id));
+  let dogBreed;
+  let image;
+
+  if(regExp.test(id)){
+    dogBreed = allDogs.filter((d) => d.id === id);
+    image = 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/f540ef58358961.59f95102c77f3.jpg';
+  }else{
+    dogBreed = allDogs.filter((d) => d.id === Number(id));
+    image = dogBreed[0].image;
+  }
 
   return (
     <div>
@@ -15,7 +25,7 @@ export default function Detail() {
       <p>Breed:</p>
       <p>{dogBreed[0].name}</p>
       <img
-        src={dogBreed[0].image}
+        src={image}
         alt="img not found"
         width="200px"
         height="200px"

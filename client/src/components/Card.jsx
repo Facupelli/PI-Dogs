@@ -9,10 +9,18 @@ export default function Card({
   min_weight,
   max_weight,
 }) {
+
+  let picture;
+  if(!image){
+    picture = 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/f540ef58358961.59f95102c77f3.jpg';
+  }else{
+    picture = image;
+  }
+
   return (
     <div>
       <Link to={"/home/" + id}>
-        <img src={image} alt="img not found" width="200px" height="200px" />
+        <img src={picture} alt="image not found" width="200px" height="200px" />
         <h3>{name}</h3>
       </Link>
       <h4>{temperament}</h4>

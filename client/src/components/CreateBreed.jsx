@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getTemperaments } from "../actions";
 import axios from "axios";
+import Validate from "./Validate";
 
 export default function CreateBreed() {
   const dispatch = useDispatch();
@@ -18,36 +19,43 @@ export default function CreateBreed() {
     temperaments: [],
   });
 
-  function handleChange(e) {
+  const [errors, setErrors] = useState({});
+
+
+  function handleInputChange(e) {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
-    console.log(input);
+    
+    setErrors(
+      Validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   }
 
-  function handleMultipleSelect(e) {
+  function handleTempSelect(e) {
     let value = Array.from(e.target.selectedOptions, (option) => option.value);
+
     setInput({
       ...input,
       temperaments: value,
     });
-    console.log(e.target.selectedOptions);
-    console.log(input);
+    console.log(input)
   }
+
+  useEffect(() => {
+    dispatch(getTemperaments());
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
-    const url = "http://localhost:3001/dogs";
-    //   const requestOptions = {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ input })
-    // };
     try {
       axios({
         method: "post",
-        url: url,
+        url: "http://localhost:3001/dogs",
         headers: {},
         data: input,
       });
@@ -62,13 +70,10 @@ export default function CreateBreed() {
         temperaments: [],
       });
     } catch (e) {
-      console.log("error", e);
+      console.log("error");
     }
   }
 
-  useEffect(() => {
-    dispatch(getTemperaments());
-  }, []);
 
   return (
     <div>
@@ -83,8 +88,9 @@ export default function CreateBreed() {
             type="text"
             name="name"
             value={input.name}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
+          {errors.name && (<p>{errors.name}</p>)}
         </div>
         <div>
           <label>Min height:</label>
@@ -92,15 +98,17 @@ export default function CreateBreed() {
             type="text"
             name="min_height"
             value={input.min_height}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
+          {errors.min_height && (<p>{errors.min_height}</p>)}
           <label>Max height:</label>
           <input
             type="text"
             name="max_height"
             value={input.max_height}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
+          {errors.max_height && (<p>{errors.max_height}</p>)}
         </div>
         <div>
           <label>Min weight:</label>
@@ -108,15 +116,17 @@ export default function CreateBreed() {
             type="text"
             name="min_weight"
             value={input.min_weight}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
+          {errors.min_weight && (<p>{errors.min_weight}</p>)}
           <label>Max weight:</label>
           <input
             type="text"
             name="max_weight"
             value={input.max_weight}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
+          {errors.max_weight && (<p>{errors.max_weight}</p>)}
         </div>
         <div>
           <label>Life Span:</label>
@@ -124,15 +134,16 @@ export default function CreateBreed() {
             type="text"
             name="life_span"
             value={input.life_span}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
+          {errors.life_span && (<p>{errors.life_span}</p>)}
         </div>
         <div>
           <label>Temperaments:</label>
           <select
             multiple={true}
             value={input.temperaments}
-            onChange={handleMultipleSelect}
+            onChange={handleTempSelect}
           >
             {temperaments &&
               temperaments.map((el) => {
