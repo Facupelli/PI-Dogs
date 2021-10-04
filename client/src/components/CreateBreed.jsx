@@ -17,6 +17,24 @@ export default function CreateBreed() {
     temperaments: [],
   });
 
+  function handleChange(e) {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+    console.log(input)
+  }
+
+  function handleMultipleSelect(e) {
+    let value = Array.from(e.target.selectedOptions, (option) => option.value);
+    setInput({
+      ...input,
+      temperaments: value,
+    });
+    console.log(e.target.selectedOptions)
+    console.log(input)
+  }
+
   useEffect(() => {
     dispatch(getTemperaments());
   }, []);
@@ -30,27 +48,61 @@ export default function CreateBreed() {
       <form>
         <div>
           <label>Name:</label>
-          <input type="text" name="name" value={input.name} />
+          <input
+            type="text"
+            name="name"
+            value={input.name}
+            onChange={handleChange}
+          />
         </div>
         <div>
           <label>Max height:</label>
-          <input type="text" name="max_height" value={input.max_height} />
+          <input
+            type="text"
+            name="max_height"
+            value={input.max_height}
+            onChange={handleChange}
+          />
           <label>Min height:</label>
-          <input type="text" name="min_height" value={input.min_height} />
+          <input
+            type="text"
+            name="min_height"
+            value={input.min_height}
+            onChange={handleChange}
+          />
         </div>
         <div>
           <label>Max weight:</label>
-          <input type="text" name="max_weight" value={input.max_weight} />
+          <input
+            type="text"
+            name="max_weight"
+            value={input.max_weight}
+            onChange={handleChange}
+          />
           <label>Min weight:</label>
-          <input type="text" name="min_weight" value={input.min_weight} />
+          <input
+            type="text"
+            name="min_weight"
+            value={input.min_weight}
+            onChange={handleChange}
+          />
         </div>
         <div>
           <label>Life Span:</label>
-          <input type="text" name="life_span" value={input.life_span} />
+          <input
+            type="text"
+            name="life_span"
+            value={input.life_span}
+            onChange={handleChange}
+          />
         </div>
         <div>
           <label>Temperaments:</label>
-          <select>
+          <select
+            multiple={true}
+            value={input.temperaments}
+            onChange={handleMultipleSelect}
+          >
             {temperaments &&
               temperaments.map((el) => {
                 return <option value={el.name}>{el.name}</option>;
@@ -58,7 +110,7 @@ export default function CreateBreed() {
           </select>
         </div>
         <div>
-          <button type='submit'>Create Breed</button>
+          <button type="submit">Create Breed</button>
         </div>
       </form>
     </div>
