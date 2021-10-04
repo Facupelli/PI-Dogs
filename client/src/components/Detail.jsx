@@ -22,13 +22,14 @@ export default function Detail() {
       />
       <p>Temperament:</p>
       <p>{dogBreed[0].temperament}</p>
-      <p>Weight</p>
+      <p>Weight:</p>
       <div>
         <p>Min: {dogBreed[0].min_weight} kg </p>
         <p>Max: {dogBreed[0].max_weight} kg </p>
       </div>
       <p>Height:</p>
-      <p>{dogBreed[0].height}</p>
+      <p>Min: {dogBreed[0].min_height}</p>
+      <p>Max: {dogBreed[0].max_height}</p>
       <p>Life Span:</p>
       <p>{dogBreed[0].life_span}</p>
     </div>

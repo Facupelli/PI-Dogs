@@ -27,13 +27,15 @@ const { Dog, Temperament } = require('../db');
 
 
 router.post("/", async (req, res) => {
-  const { name, height, weight, life_span, createdInDb, temperament } = req.body;
+  const { name, min_height, max_height, min_weight, max_weight, life_span, createdInDb, temperament } = req.body;
 
   try{
     let dogCreated = await Dog.create({
       name,
-      height,
-      weight,
+      min_height,
+      max_height,
+      min_weight,
+      max_weight,
       life_span,
       createdInDb,
     });

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getTemperaments } from "../actions";
+import axios from "axios";
 
 export default function CreateBreed() {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ export default function CreateBreed() {
       ...input,
       [e.target.name]: e.target.value,
     });
-    console.log(input)
+    console.log(input);
   }
 
   function handleMultipleSelect(e) {
@@ -31,8 +32,38 @@ export default function CreateBreed() {
       ...input,
       temperaments: value,
     });
-    console.log(e.target.selectedOptions)
-    console.log(input)
+    console.log(e.target.selectedOptions);
+    console.log(input);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const url = "http://localhost:3001/dogs";
+    //   const requestOptions = {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({ input })
+    // };
+    try {
+      axios({
+        method: "post",
+        url: url,
+        headers: {},
+        data: input,
+      });
+      console.log("sumbited succesfully", input);
+      setInput({
+        name: "",
+        max_height: "",
+        min_height: "",
+        max_weight: "",
+        min_weight: "",
+        life_span: "",
+        temperaments: [],
+      });
+    } catch (e) {
+      console.log("error", e);
+    }
   }
 
   useEffect(() => {
@@ -45,7 +76,7 @@ export default function CreateBreed() {
         <button>Home</button>
       </Link>
       <h3>Create Breed Form</h3>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
           <label>Name:</label>
           <input
@@ -56,13 +87,6 @@ export default function CreateBreed() {
           />
         </div>
         <div>
-          <label>Max height:</label>
-          <input
-            type="text"
-            name="max_height"
-            value={input.max_height}
-            onChange={handleChange}
-          />
           <label>Min height:</label>
           <input
             type="text"
@@ -70,20 +94,27 @@ export default function CreateBreed() {
             value={input.min_height}
             onChange={handleChange}
           />
-        </div>
-        <div>
-          <label>Max weight:</label>
+          <label>Max height:</label>
           <input
             type="text"
-            name="max_weight"
-            value={input.max_weight}
+            name="max_height"
+            value={input.max_height}
             onChange={handleChange}
           />
+        </div>
+        <div>
           <label>Min weight:</label>
           <input
             type="text"
             name="min_weight"
             value={input.min_weight}
+            onChange={handleChange}
+          />
+          <label>Max weight:</label>
+          <input
+            type="text"
+            name="max_weight"
+            value={input.max_weight}
             onChange={handleChange}
           />
         </div>

@@ -12,7 +12,8 @@ const getApiInfo = async () => {
         life_span: el.life_span,
         min_weight: Number(el.weight.metric.split(' - ')[0]),
         max_weight: Number(el.weight.metric.split(' - ')[1]),
-        height: el.height.metric,
+        min_height: Number(el.height.metric.split(' - ')[0]),
+        max_height: Number(el.height.metric.split(' - ')[1]),
         id: el.id,
       };
     });
