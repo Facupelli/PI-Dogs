@@ -40,8 +40,9 @@ router.post("/", async (req, res) => {
       createdInDb,
     });
   
-    let temperamentDb = await Temperament.findAll({ where: {name: temperament} }); //busco el temperament de la lista de temperaments
-    dogCreated.addTemperament(temperamentDb);
+    let temperamentDb = await Temperament.findAll({ where: {name: temperament} });   
+    console.log(temperamentDb);  
+    await dogCreated.addTemperaments(temperamentDb);
     res.send('Breed created correctly')
   }catch(error){
     res.send(error)

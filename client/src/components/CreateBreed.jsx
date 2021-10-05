@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { getTemperaments } from "../actions";
-import axios from "axios";
+import { Link, useHistory } from "react-router-dom";
+import { getTemperaments, postBreed } from "../actions";
 import Validate from "./Validate";
 
 export default function CreateBreed() {
   const dispatch = useDispatch();
+  const history = useHistory(); // te lleva a una ruta especifica
   const temperaments = useSelector((state) => state.temperaments);
 
   const [input, setInput] = useState({
@@ -37,13 +37,11 @@ export default function CreateBreed() {
   }
 
   function handleTempSelect(e) {
-    let value = Array.from(e.target.selectedOptions, (option) => option.value);
-
+    
     setInput({
       ...input,
-      temperaments: value,
+      temperaments: [...input.temperaments, e.target.value]
     });
-    console.log(input)
   }
 
   useEffect(() => {
@@ -52,14 +50,10 @@ export default function CreateBreed() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    console.log(input);
     try {
-      axios({
-        method: "post",
-        url: "http://localhost:3001/dogs",
-        headers: {},
-        data: input,
-      });
-      console.log("sumbited succesfully", input);
+      dispatch(postBreed(input));
+      alert('Breed created!')
       setInput({
         name: "",
         max_height: "",
@@ -69,6 +63,7 @@ export default function CreateBreed() {
         life_span: "",
         temperaments: [],
       });
+      history.push('/home'); // redirigimos al home
     } catch (e) {
       console.log("error");
     }
@@ -81,14 +76,14 @@ export default function CreateBreed() {
         <button>Home</button>
       </Link>
       <h3>Create Breed Form</h3>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={e => handleSubmit(e)}>
         <div>
           <label>Name:</label>
           <input
             type="text"
             name="name"
             value={input.name}
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e)}
           />
           {errors.name && (<p>{errors.name}</p>)}
         </div>
@@ -98,7 +93,7 @@ export default function CreateBreed() {
             type="text"
             name="min_height"
             value={input.min_height}
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e)}
           />
           {errors.min_height && (<p>{errors.min_height}</p>)}
           <label>Max height:</label>
@@ -106,7 +101,7 @@ export default function CreateBreed() {
             type="text"
             name="max_height"
             value={input.max_height}
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e)}
           />
           {errors.max_height && (<p>{errors.max_height}</p>)}
         </div>
@@ -116,7 +111,7 @@ export default function CreateBreed() {
             type="text"
             name="min_weight"
             value={input.min_weight}
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e)}
           />
           {errors.min_weight && (<p>{errors.min_weight}</p>)}
           <label>Max weight:</label>
@@ -124,7 +119,7 @@ export default function CreateBreed() {
             type="text"
             name="max_weight"
             value={input.max_weight}
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e)}
           />
           {errors.max_weight && (<p>{errors.max_weight}</p>)}
         </div>
@@ -134,22 +129,25 @@ export default function CreateBreed() {
             type="text"
             name="life_span"
             value={input.life_span}
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e)}
           />
           {errors.life_span && (<p>{errors.life_span}</p>)}
         </div>
         <div>
           <label>Temperaments:</label>
           <select
-            multiple={true}
+            // multiple={true}
             value={input.temperaments}
-            onChange={handleTempSelect}
+            onChange={e => handleTempSelect(e)}
           >
             {temperaments &&
               temperaments.map((el) => {
                 return <option value={el.name}>{el.name}</option>;
               })}
           </select>
+          <ul>
+            <li>{input.temperaments.map(temp => temp + ' ')}</li>
+          </ul>
         </div>
         <div>
           <button type="submit">Create Breed</button>
