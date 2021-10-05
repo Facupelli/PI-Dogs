@@ -54,6 +54,7 @@ export default function Home() {
                     name={el.name}
                     image={el.image}
                     temperament={el.temperament}
+                    temperaments={el.temperaments}
                     min_weight={el.min_weight}
                     max_weight={el.max_weight}
                   />

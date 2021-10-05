@@ -6,6 +6,7 @@ export default function Card({
   name,
   image,
   temperament,
+  temperaments,
   min_weight,
   max_weight,
 }) {

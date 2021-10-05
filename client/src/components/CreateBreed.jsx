@@ -21,13 +21,12 @@ export default function CreateBreed() {
 
   const [errors, setErrors] = useState({});
 
-
   function handleInputChange(e) {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
-    
+
     setErrors(
       Validate({
         ...input,
@@ -37,10 +36,16 @@ export default function CreateBreed() {
   }
 
   function handleTempSelect(e) {
-    
     setInput({
       ...input,
-      temperament: [...input.temperament, e.target.value]
+      temperament: [...input.temperament, e.target.value],
+    });
+  }
+
+  function handleDelete(el){
+    setInput({
+      ...input,
+      temperament: input.temperament.filter(temp => temp !== el)
     });
   }
 
@@ -53,7 +58,7 @@ export default function CreateBreed() {
     console.log(input);
     try {
       dispatch(postBreed(input));
-      alert('Breed created!')
+      alert("Breed created!");
       setInput({
         name: "",
         max_height: "",
@@ -63,12 +68,11 @@ export default function CreateBreed() {
         life_span: "",
         temperament: [],
       });
-      history.push('/home'); // redirigimos al home
+      history.push("/home"); // redirigimos al home
     } catch (e) {
       console.log("error");
     }
   }
-
 
   return (
     <div>
@@ -76,16 +80,16 @@ export default function CreateBreed() {
         <button>Home</button>
       </Link>
       <h3>Create Breed Form</h3>
-      <form onSubmit={e => handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div>
           <label>Name:</label>
           <input
             type="text"
             name="name"
             value={input.name}
-            onChange={e => handleInputChange(e)}
+            onChange={(e) => handleInputChange(e)}
           />
-          {errors.name && (<p>{errors.name}</p>)}
+          {errors.name && <p>{errors.name}</p>}
         </div>
         <div>
           <label>Min height:</label>
@@ -93,17 +97,17 @@ export default function CreateBreed() {
             type="text"
             name="min_height"
             value={input.min_height}
-            onChange={e => handleInputChange(e)}
+            onChange={(e) => handleInputChange(e)}
           />
-          {errors.min_height && (<p>{errors.min_height}</p>)}
+          {errors.min_height && <p>{errors.min_height}</p>}
           <label>Max height:</label>
           <input
             type="text"
             name="max_height"
             value={input.max_height}
-            onChange={e => handleInputChange(e)}
+            onChange={(e) => handleInputChange(e)}
           />
-          {errors.max_height && (<p>{errors.max_height}</p>)}
+          {errors.max_height && <p>{errors.max_height}</p>}
         </div>
         <div>
           <label>Min weight:</label>
@@ -111,17 +115,17 @@ export default function CreateBreed() {
             type="text"
             name="min_weight"
             value={input.min_weight}
-            onChange={e => handleInputChange(e)}
+            onChange={(e) => handleInputChange(e)}
           />
-          {errors.min_weight && (<p>{errors.min_weight}</p>)}
+          {errors.min_weight && <p>{errors.min_weight}</p>}
           <label>Max weight:</label>
           <input
             type="text"
             name="max_weight"
             value={input.max_weight}
-            onChange={e => handleInputChange(e)}
+            onChange={(e) => handleInputChange(e)}
           />
-          {errors.max_weight && (<p>{errors.max_weight}</p>)}
+          {errors.max_weight && <p>{errors.max_weight}</p>}
         </div>
         <div>
           <label>Life Span:</label>
@@ -129,16 +133,16 @@ export default function CreateBreed() {
             type="text"
             name="life_span"
             value={input.life_span}
-            onChange={e => handleInputChange(e)}
+            onChange={(e) => handleInputChange(e)}
           />
-          {errors.life_span && (<p>{errors.life_span}</p>)}
+          {errors.life_span && <p>{errors.life_span}</p>}
         </div>
         <div>
           <label>Temperaments:</label>
           <select
             // multiple={true}
             value={input.temperament}
-            onChange={e => handleTempSelect(e)}
+            onChange={(e) => handleTempSelect(e)}
           >
             {temperaments &&
               temperaments.map((el) => {
@@ -146,7 +150,14 @@ export default function CreateBreed() {
               })}
           </select>
           <ul>
-            <li>{input.temperament.map(temp => temp + ' ')}</li>
+            <li>
+              {input.temperament.map((temp) => (
+                <div>
+                  <p>{temp}</p>
+                  <button type='button' onClick={() => handleDelete(temp)} >x</button>
+                </div>
+              ))}
+            </li>
           </ul>
         </div>
         <div>
