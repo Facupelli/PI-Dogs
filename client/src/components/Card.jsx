@@ -21,7 +21,7 @@ export default function Card({
   return (
     <div>
       <Link to={"/home/" + id}>
-        <img src={picture} alt="image not found" width="200px" height="200px" />
+        <img src={picture} alt="not found" width="200px" height="200px" />
         <h3>{name}</h3>
       </Link>
       <h4>{temperament}</h4>

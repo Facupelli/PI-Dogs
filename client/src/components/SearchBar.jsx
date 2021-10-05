@@ -19,9 +19,9 @@ export default function SearchBar ({setCurrentPage}) {
 
   };
 
-  function handleSubmit(e){
+  const handleSubmit= async(e) => {
       e.preventDefault();
-      dispatch(getDogsByBreed(title));
+      dispatch(await getDogsByBreed(title));
       setTitle('');
       setCurrentPage(1);
   };

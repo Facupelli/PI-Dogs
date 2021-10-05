@@ -1,3 +1,15 @@
+import {
+  GET_DOGS_BY_BREED,
+  ORDER_BY_WEIGHT,
+  ORDER_BY_BREED,
+  FILTER_CREATED,
+  GET_DOGS,
+  GET_TEMPERAMENTS,
+  GET_DETAIL,
+  POST_BREED,
+  FILTER_BY_TEMPERAMENT,
+} from "../actions";
+
 const initialState = {
   allDogs: [],
   dogs: [],
@@ -7,42 +19,42 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case "GET_DOGS":
+    case GET_DOGS:
       return {
         ...state,
         dogs: action.payload,
         allDogs: action.payload,
       };
-    case "GET_TEMPERAMENTS":
+    case GET_TEMPERAMENTS:
       return {
         ...state,
         temperaments: action.payload,
       };
-    case "FILTER_BY_TEMPERAMENT":
+    case FILTER_BY_TEMPERAMENT:
       let filterByTemp;
       if (action.payload === "All") {
         filterByTemp = state.allDogs;
       } else {
-        filterByTemp = state.allDogs.filter((d) =>
-          d.temperament.includes(action.payload)
-        );
+        filterByTemp = state.allDogs
+          .filter((d) => d.temperament)
+          .filter((dfiltered) =>
+            dfiltered.temperament.includes(action.payload)
+          );
       }
-
       return {
         ...state,
         dogs: filterByTemp,
       };
-    case "FILTER_CREATED":
-      const allDoggys = state.allDogs;
+    case FILTER_CREATED:
       const filter =
         action.payload === "created_breed"
-          ? allDoggys.filter((d) => d.createdInDb)
-          : allDoggys.filter((d) => !d.createdInDb);
+          ? state.allDogs.filter((d) => d.createdInDb)
+          : state.allDogs.filter((d) => !d.createdInDb);
       return {
         ...state,
         dogs: filter,
       };
-    case "ORDER_BY_BREED":
+    case ORDER_BY_BREED:
       const sortedByBreed =
         action.payload === "breed_asc"
           ? state.dogs.sort(function (a, b) {
@@ -67,7 +79,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         dogs: sortedByBreed,
       };
-    case "ORDER_BY_WEIGHT":
+    case ORDER_BY_WEIGHT:
       const sortedByWeight =
         action.payload === "weight_asc"
           ? state.dogs.sort(function (a, b) {
@@ -92,16 +104,16 @@ function rootReducer(state = initialState, action) {
         ...state,
         dogs: sortedByWeight,
       };
-    case "GET_DOGS_BY_BREED":
+    case GET_DOGS_BY_BREED:
       return {
         ...state,
         dogs: action.payload,
       };
-    case "POST_BREED":
+    case POST_BREED:
       return {
         ...state,
       };
-    case "GET_DETAIL":
+    case GET_DETAIL:
       return {
         ...state,
         detail: action.payload,

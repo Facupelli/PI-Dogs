@@ -26,8 +26,12 @@ export default function Home() {
   };
 
   useEffect(() => {
-    dispatch(getDogs()); // es lo mismo que mapDispatchToProps
-  }, []); // dependencias
+    dispatch(getDogs()); 
+  }, []); 
+
+  function handleCleanFilters(){
+    dispatch(getDogs());
+  }
 
   return (
     <div>
@@ -43,6 +47,7 @@ export default function Home() {
           setCurrentPage={setCurrentPage}
           order={order}
           setOrder={setOrder}
+          handleCleanFilters={handleCleanFilters}
          />
 
         {currentDogs &&
