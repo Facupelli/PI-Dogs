@@ -8,15 +8,14 @@ export default function SearchBar ({setCurrentPage}) {
   // const allDogs = useSelector((state) => state.dogs);
   const dispatch = useDispatch();
 
-
   const [title, setTitle] = useState("");
   
   function handleSearch(e){
       setTitle(e.target.value)
 
     //BUSQUEDA MIENTRAS SE ESCRIBE
-    //   dispatch(getDogsByBreed(title));
-    //   setCurrentPage(1);
+    // dispatch(getDogsByBreed(title));
+    // setCurrentPage(1);
 
   };
 
@@ -26,11 +25,6 @@ export default function SearchBar ({setCurrentPage}) {
       setTitle('');
       setCurrentPage(1);
   };
-
-//   const getDogsByBreed = async() => {
-//     console.log(title);
-//     return allDogs.filter(d => d.name.includes(title));
-//   }
  
   return (
     <div>

@@ -70,9 +70,16 @@ export function orderByWeight(payload){
 }
 
 export function getDogsByBreed(payload){
-    return{
-        type: 'GET_DOGS_BY_BREED',
-        payload
+    return async function(dispatch){
+        try{
+            let info = await axios('http://localhost:3001/dogs?name=' + payload);
+            return dispatch({
+                type: 'GET_DOGS_BY_BREED',
+                payload: info.data
+            })
+        }catch(e){
+            console.log(e);
+        }
     }
 }
 

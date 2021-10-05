@@ -53,8 +53,7 @@ export default function Home() {
                     id={el.id}
                     name={el.name}
                     image={el.image}
-                    temperament={el.temperament}
-                    temperaments={el.temperaments}
+                    temperament={el.createdInDb? el.temperaments.map(el => el.name + (', ')) : el.temperament}
                     min_weight={el.min_weight}
                     max_weight={el.max_weight}
                   />
