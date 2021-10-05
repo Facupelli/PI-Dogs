@@ -32,16 +32,15 @@ router.post("/", async (req, res) => {
   try{
     let dogCreated = await Dog.create({
       name,
-      min_height,
-      max_height,
+      life_span,
       min_weight,
       max_weight,
-      life_span,
+      min_height,
+      max_height,
       createdInDb,
     });
   
     let temperamentDb = await Temperament.findAll({ where: {name: temperament} });   
-    console.log(temperamentDb);  
     await dogCreated.addTemperaments(temperamentDb);
     res.send('Breed created correctly')
   }catch(error){

@@ -16,7 +16,7 @@ export default function CreateBreed() {
     max_weight: "",
     min_weight: "",
     life_span: "",
-    temperaments: [],
+    temperament: [],
   });
 
   const [errors, setErrors] = useState({});
@@ -40,7 +40,7 @@ export default function CreateBreed() {
     
     setInput({
       ...input,
-      temperaments: [...input.temperaments, e.target.value]
+      temperament: [...input.temperament, e.target.value]
     });
   }
 
@@ -61,7 +61,7 @@ export default function CreateBreed() {
         max_weight: "",
         min_weight: "",
         life_span: "",
-        temperaments: [],
+        temperament: [],
       });
       history.push('/home'); // redirigimos al home
     } catch (e) {
@@ -137,7 +137,7 @@ export default function CreateBreed() {
           <label>Temperaments:</label>
           <select
             // multiple={true}
-            value={input.temperaments}
+            value={input.temperament}
             onChange={e => handleTempSelect(e)}
           >
             {temperaments &&
@@ -146,7 +146,7 @@ export default function CreateBreed() {
               })}
           </select>
           <ul>
-            <li>{input.temperaments.map(temp => temp + ' ')}</li>
+            <li>{input.temperament.map(temp => temp + ' ')}</li>
           </ul>
         </div>
         <div>

@@ -20,6 +20,13 @@ export function getTemperaments(){
     }
 }
 
+export function postBreed(payload){
+    return async function(dispatch) {
+        const response = await axios.post('http://localhost:3001/dogs', payload);
+        return response;
+    }
+}
+
 export function filterByTemperament(payload){
     return {
         type: 'FILTER_BY_TEMPERAMENT',
@@ -55,10 +62,3 @@ export function getDogsByBreed(payload){
     }
 }
 
-export function postBreed(payload){
-    return async function(dispatch) {
-        const response = await axios.post('http://localhost:3001/dogs', payload);
-        console.log(response);
-        return response;
-    }
-}

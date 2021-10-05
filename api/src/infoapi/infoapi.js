@@ -21,7 +21,15 @@ const getApiInfo = async () => {
   };
   
   const getDbInfo = async () => {
-    return await Dog.findAll();
+    return await Dog.findAll({
+      include:{
+        model: Temperament,
+        attributes: ['name'],
+        through: {
+          attributes: [],
+        },
+      }
+    });
   };
   
   const getAllDogs = async () => {
