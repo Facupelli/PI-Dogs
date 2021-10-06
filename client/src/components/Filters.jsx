@@ -7,7 +7,7 @@ import {
   orderByBreed,
   orderByWeight,
 } from "../actions";
-// import axios from 'axios'
+
 
 export default function Filters({ setCurrentPage, order, setOrder, handleCleanFilters }) {
   const dispatch = useDispatch();

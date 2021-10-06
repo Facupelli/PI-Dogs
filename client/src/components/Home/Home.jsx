@@ -1,12 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDogs } from "../actions/index";
-import { Link } from "react-router-dom";
-import Card from "./Card";
-import Paginado from "./Paginado";
-import Filters from './Filters'
-import SearchBar from "./SearchBar";
+import { getDogs } from "../../actions/index";
+import Navbar from "../Navbar/Navbar";
+import Card from "../Card";
+import Paginado from "../Paginado";
+import s from "./Home.module.css";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -15,7 +14,7 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1); //arranco en la pagina 1
   const [dogsPerPage, setDogsPerPage] = useState(8); //cuantos perros por pagina
 
-  const [order, setOrder] = useState('');
+  const [order, setOrder] = useState("");
 
   const lastDog = currentPage * dogsPerPage;
   const firstDog = lastDog - dogsPerPage;
@@ -26,43 +25,39 @@ export default function Home() {
   };
 
   useEffect(() => {
-    dispatch(getDogs()); 
-  }, []); 
+    dispatch(getDogs());
+  }, []);
 
-  function handleCleanFilters(){
+  function handleCleanFilters() {
     dispatch(getDogs());
   }
 
   return (
     <div>
-      <Link to="/createbreed">Crear Raza</Link>
-      <h1>THE DOG APP</h1>
       <div>
-
-        <SearchBar
-          setCurrentPage={setCurrentPage}
-        />
-
-        <Filters 
+        <Navbar
           setCurrentPage={setCurrentPage}
           order={order}
           setOrder={setOrder}
           handleCleanFilters={handleCleanFilters}
-         />
+        />
 
         {currentDogs &&
           currentDogs.map((el) => {
             return (
               <div>
-                  <Card
-                    id={el.id}
-                    name={el.name}
-                    image={el.image}
-                    temperament={el.createdInDb? el.temperaments.map(el => el.name + (', ')) : el.temperament}
-                    min_weight={el.min_weight}
-                    max_weight={el.max_weight}
-                  />
-                
+                <Card
+                  id={el.id}
+                  name={el.name}
+                  image={el.image}
+                  temperament={
+                    el.createdInDb
+                      ? el.temperaments.map((el) => el.name + ", ")
+                      : el.temperament
+                  }
+                  min_weight={el.min_weight}
+                  max_weight={el.max_weight}
+                />
               </div>
             );
           })}
@@ -72,7 +67,6 @@ export default function Home() {
           allDogs={allDogs.length}
           paginado={paginado}
         />
-
       </div>
     </div>
   );
