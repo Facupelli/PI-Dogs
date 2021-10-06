@@ -1,30 +1,40 @@
-html {
-  min-height: 100%;
+html, body {
+  /* min-height: 100%;
   background-image: url("https://images.unsplash.com/photo-1600077029182-92ac8906f9a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
   background-size: cover;
   background-position: center center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
+  margin: 0px;
+  height: 100%;
 }
 
-.div{
-    margin-top: 5%;
+.background{
+    background-image: url("https://images.unsplash.com/photo-1600077029182-92ac8906f9a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
 }
 
-.div p{
+.welcome{
+    padding-top: 5%;
+}
+
+.welcome p{
     font-size: 32px;
     font-family:'Roboto',sans-serif;
     padding: 0;
     margin:0;
 }
 
-.div h1{
+.welcome h1{
     font-family:'Roboto',sans-serif;
     font-size: 40px;
     padding-top: 5px;
     margin:0;
 }
 
-.div button{
+.welcome button{
     padding: 10px 20px;
     margin-top:15px;
     border-radius:0.15em;
@@ -32,8 +42,8 @@ html {
     font-family:'Roboto',sans-serif;
     font-weight:400;
     color:#FFFFFF;
-    background-color:#ffb300;
-    box-shadow:inset 0 -9.6px 0 -6px #e3a000;
+    background-color:#fad223;
+    box-shadow:inset 0 -9.6px 0 -6px #dbb81f;
     text-align:center;
     border: none;
     outline: none;
