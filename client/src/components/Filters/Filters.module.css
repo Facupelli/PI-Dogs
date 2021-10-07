@@ -3,8 +3,11 @@
     justify-content: center;
     align-items: center;
 
-    background: #2b3142;
+    /* background: white; */
+    padding-top: 10px;
     padding-bottom: 10px;
+
+
 }
 
 .filter{
@@ -20,7 +23,7 @@
 
 .select{
     background-color: #ffffff;
-    border: 1px solid #ffffff;
+    border: 1px solid #2b3142;
     border-radius: 2px;
     padding-top: 0px;
 
@@ -48,7 +51,7 @@
 .button{
   background-color: #ffffff;
   color: #2b3142;
-  border: 1px solid #ffffff;
+  border: 1px solid #2b3142;
   border-radius: 2px;
   box-sizing: border-box;
   text-decoration: none;
