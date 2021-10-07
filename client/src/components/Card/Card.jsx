@@ -20,16 +20,16 @@ export default function Card({
 
   return (
     <div className={s.card}>
-      <div>
+      <div className={s.imageContainer}>
         <Link to={"/home/" + id}>
-          <img src={picture} alt="not found" width="200px" height="200px" />
+          <img src={picture} alt="not found" />
         </Link>
       </div>
       <div>
-        <Link to={"/home/" + id}>
-          <h3>{name}</h3>
+        <Link to={"/home/" + id} className={s.name}>
+          <p>{name}</p>
         </Link>
-        <h4>{temperament}</h4>
+        <p className={s.temperament}>{temperament}</p>
         <div className={s.container}>
           <p className={s.weight}>Weight:</p>
           <p className={s.number}>
