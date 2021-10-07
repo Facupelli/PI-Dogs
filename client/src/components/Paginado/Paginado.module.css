@@ -1,13 +1,22 @@
 .container{
-    margin: 0px;
+    margin: 0px 0px 0px 10px;
+
 }
 
 .ul{
     display: flex;
     justify-content: center;
+
 }
 
 .pageNumber{
     list-style-type: none;
+    cursor: pointer;
+    background:#ffffff;
+    border: 1px solid #2b3142;
+    color: #2b3142;
+    border-radius: 3px;
     padding: 10px;
+    margin: 0px 5px 30px 5px;
+
 }

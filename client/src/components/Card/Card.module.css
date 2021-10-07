@@ -1,51 +1,41 @@
 .card {
-  background: #E2CFEA;
-  
+  background: #e2cfea;
   width: 400px;
   height: 475px;
-
- 
-
   border-radius: 5px;
-  
-
   box-shadow: rgba(114, 91, 91, 0.24) 0px 3px 8px;
 }
 
-.imageContainer img{
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    
-
+.imageContainer img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
-.name{
+.name {
   text-decoration: none;
   font-family: "Roboto", sans-serif;
   font-weight: 800;
   font-size: 25px;
   color: #2b3142;
-  background-color: red;
-
   margin: 0px;
   padding: 0px;
 }
 
-    .name:visited{
-        color: #2b3142;
-    }
-
-.name p {
-    margin: 0px;
-    padding: 10px 10px 20px 10px;
+.name:visited {
+  color: #2b3142;
 }
 
-.temperament{
-    color: #2b3142;
-    height: 30px;
+.name p {
+  margin: 0px;
+  padding: 10px 10px 20px 10px;
+}
+
+.temperament {
+  color: #2b3142;
+  height: 30px;
   margin: 0px;
   padding: 0px 20px 20px 20px;
 }
@@ -54,19 +44,17 @@
   display: flex;
   justify-content: center;
   align-items: baseline;
-
 }
 
 .weight {
-    color: #2b3142;
+  color: #2b3142;
   font-size: 15px;
   font-weight: 600;
-
   padding-right: 10px;
 }
 
 .number {
-    color: #2b3142;
+  color: #2b3142;
   font-size: 15px;
   font-weight: 400;
 }

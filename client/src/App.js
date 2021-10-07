@@ -2,8 +2,8 @@ import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LandingPage from './components/LandingPage/LandingPage';
 import Home from './components/Home/Home';
-import Detail from "./components/Detail";
-import CreateBreed from "./components/CreateBreed";
+import Detail from "./components/Detail/Detail";
+import CreateBreed from "./components/CreateBreed/CreateBreed";
 
 function App() {
   return (
