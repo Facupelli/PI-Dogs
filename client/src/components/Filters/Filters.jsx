@@ -47,31 +47,31 @@ export default function Filters({ setCurrentPage, order, setOrder, handleCleanFi
     <div className={s.container}>
       <div className={s.filter}>
         <p>Filter by</p>
-        <select onChange={(e) => handleFilterTemps(e)}>
+        <select onChange={(e) => handleFilterTemps(e)} className={s.select}>
           <option value="All">All temperaments</option>
           {allTemperaments &&
             allTemperaments.map((el) => {
               return <option value={el.name}>{el.name}</option>;
             })}
         </select>
-        <select onChange={(e) => handleFilterCreated(e)}>
+        <select onChange={(e) => handleFilterCreated(e)} className={s.select}>
           <option value="api_breed">Api Breed</option>
           <option value="created_breed">Created Breed</option>
         </select>
       </div>
-      <div className={s.order}>
+      <div className={s.filter}>
         <p>Order by</p>
-        <select onChange={(e) => handleOrderByBreed(e)}>
-          <option value="breed_asc">Breed Ascendente</option>
-          <option value="breed_desc">Breed Descendente</option>
+        <select onChange={(e) => handleOrderByBreed(e)} className={s.select}>
+          <option value="breed_asc">Breed Ascendant</option>
+          <option value="breed_desc">Breed Descendant</option>
         </select>
-        <select onChange={(e) => handleOrderByWeight(e)}>
-          <option value="weight_asc">Weight Ascendente</option>
-          <option value="weight_desc">Weight Descendente</option>
+        <select onChange={(e) => handleOrderByWeight(e)} className={s.select}>
+          <option value="weight_asc">Weight Ascendant</option>
+          <option value="weight_desc">Weight Descendant</option>
         </select>
       </div>
       <div>
-        <button type='button' onClick={() => handleCleanFilters()}>Clean filters</button>
+        <button type='button' onClick={() => handleCleanFilters()} className={s.button}>CLEAN ALL</button>
       </div>
     </div>
   );
