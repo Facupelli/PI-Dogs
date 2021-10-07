@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { getDetail } from "../../actions";
+import { getDetail, cleanDetail } from "../../actions";
 import { Link } from "react-router-dom";
 import s from "./Detail.module.css";
+import Loading from "../Loading/Loading";
 
 export default function Detail() {
   const dispatch = useDispatch();
@@ -13,6 +14,12 @@ export default function Detail() {
   useEffect(() => {
     dispatch(getDetail(id));
   }, [dispatch]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(cleanDetail());
+    }
+  }, [])
 
   const dog = useSelector((state) => state.detail);
   const url =
@@ -65,7 +72,7 @@ export default function Detail() {
           </div>
         </div>
       ) : (
-        <div>loading...</div>
+        <Loading/>
       )}
     </div>
   );

@@ -8,6 +8,7 @@ import {
   GET_DETAIL,
   POST_BREED,
   FILTER_BY_TEMPERAMENT,
+  CLEAN_DETAIL,
 } from "../actions";
 
 const initialState = {
@@ -46,10 +47,11 @@ function rootReducer(state = initialState, action) {
         dogs: filterByTemp,
       };
     case FILTER_CREATED:
-      const filter =
-        action.payload === "created_breed"
-          ? state.allDogs.filter((d) => d.createdInDb)
-          : state.allDogs.filter((d) => !d.createdInDb);
+      let filter;
+
+      if(action.payload === 'all') filter = state.allDogs;
+      if(action.payload === "created_breed") filter = state.allDogs.filter((d) => d.createdInDb);
+      if(action.payload === 'api_breed') filter = state.allDogs.filter((d) => !d.createdInDb);
       return {
         ...state,
         dogs: filter,
@@ -57,7 +59,7 @@ function rootReducer(state = initialState, action) {
     case ORDER_BY_BREED:
       const sortedByBreed =
         action.payload === "breed_asc"
-          ? state.dogs.sort(function (a, b) {
+          ? state.allDogs.sort(function (a, b) {
               if (a.name > b.name) {
                 return 1;
               }
@@ -66,7 +68,7 @@ function rootReducer(state = initialState, action) {
               }
               return 0;
             })
-          : state.dogs.sort(function (a, b) {
+          : state.allDogs.sort(function (a, b) {
               if (a.name > b.name) {
                 return -1;
               }
@@ -82,7 +84,7 @@ function rootReducer(state = initialState, action) {
     case ORDER_BY_WEIGHT:
       const sortedByWeight =
         action.payload === "weight_asc"
-          ? state.dogs.sort(function (a, b) {
+          ? state.allDogs.sort(function (a, b) {
               if (a.min_weight > b.min_weight) {
                 return 1;
               }
@@ -91,7 +93,7 @@ function rootReducer(state = initialState, action) {
               }
               return 0;
             })
-          : state.dogs.sort(function (a, b) {
+          : state.allDogs.sort(function (a, b) {
               if (a.min_weight > b.min_weight) {
                 return -1;
               }
@@ -118,6 +120,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         detail: action.payload,
       };
+    case CLEAN_DETAIL:
+      return {
+        ...state,
+        detail: [],
+      }
     default:
       return state;
   }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   filterCreated,
@@ -7,10 +7,14 @@ import {
   orderByBreed,
   orderByWeight,
 } from "../../actions";
-import s from './Filters.module.css'
+import s from "./Filters.module.css";
 
-
-export default function Filters({ setCurrentPage, order, setOrder, handleCleanFilters }) {
+export default function Filters({
+  setCurrentPage,
+  order,
+  setOrder,
+  handleCleanFilters,
+}) {
   const dispatch = useDispatch();
   const allTemperaments = useSelector((state) => state.temperaments);
 
@@ -42,7 +46,6 @@ export default function Filters({ setCurrentPage, order, setOrder, handleCleanFi
     setOrder(`Ordenado ${e.target.value}`);
   }
 
- 
   return (
     <div className={s.container}>
       <div className={s.filter}>
@@ -55,6 +58,7 @@ export default function Filters({ setCurrentPage, order, setOrder, handleCleanFi
             })}
         </select>
         <select onChange={(e) => handleFilterCreated(e)} className={s.select}>
+          <option value="all">All breeds</option>
           <option value="api_breed">Api Breed</option>
           <option value="created_breed">Created Breed</option>
         </select>
@@ -62,16 +66,28 @@ export default function Filters({ setCurrentPage, order, setOrder, handleCleanFi
       <div className={s.filter}>
         <p>Order by</p>
         <select onChange={(e) => handleOrderByBreed(e)} className={s.select}>
-          <option value="breed_asc">Breed Ascendant</option>
-          <option value="breed_desc">Breed Descendant</option>
+          <option value="" disabled selected>
+            Breed 
+          </option>
+          <option value="breed_asc">Ascendant (A-A)</option>
+          <option value="breed_desc">Descendant (Z-A)</option>
         </select>
         <select onChange={(e) => handleOrderByWeight(e)} className={s.select}>
-          <option value="weight_asc">Weight Ascendant</option>
-          <option value="weight_desc">Weight Descendant</option>
+          <option value="" disabled selected>
+            Weight 
+          </option>
+          <option value="weight_asc">Ascendant (- +)</option>
+          <option value="weight_desc">Descendant (+ -)</option>
         </select>
       </div>
       <div>
-        <button type='button' onClick={() => handleCleanFilters()} className={s.button}>CLEAN ALL</button>
+        <button
+          type="button"
+          onClick={() => handleCleanFilters()}
+          className={s.button}
+        >
+          CLEAR ALL
+        </button>
       </div>
     </div>
   );

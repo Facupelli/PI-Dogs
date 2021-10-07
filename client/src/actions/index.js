@@ -8,7 +8,8 @@ export const GET_DOGS= 'getDogs';
 export const GET_TEMPERAMENTS = 'getTemperaments';
 export const GET_DETAIL = 'getDetail';
 export const POST_BREED = 'postBreed';
-export const FILTER_BY_TEMPERAMENT = 'filterByTemperament'
+export const FILTER_BY_TEMPERAMENT = 'filterByTemperament';
+export const CLEAN_DETAIL = 'cleanDetail';
 
 
 
@@ -104,6 +105,13 @@ export function getDogsByBreed(payload){
         }catch(e){
             console.log(e);
         }
+    }
+}
+
+export function cleanDetail(payload){
+    return{
+        type: CLEAN_DETAIL,
+        payload
     }
 }
 

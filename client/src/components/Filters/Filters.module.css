@@ -18,7 +18,7 @@
 
 .filter p {
     color: #2b3142;
-    padding-right: 2px;
+    padding-right: 20px;
 }
 
 .select{
@@ -57,7 +57,7 @@
   text-decoration: none;
   font-family: "Roboto", sans-serif;
   font-weight: 600;
-  font-size: 5px;
+  font-size: 15px;
   text-align:center;
   padding: 6px;
   cursor: pointer;

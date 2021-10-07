@@ -5,6 +5,7 @@ import { getDogs } from "../../actions/index";
 import Navbar from "../Navbar/Navbar";
 import Card from "../Card/Card";
 import Paginado from "../Paginado/Paginado";
+import Loading from '../Loading/Loading'
 import s from "./Home.module.css";
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
   const firstDog = lastDog - dogsPerPage;
   const currentDogs = allDogs.slice(firstDog, lastDog); //me trae del reducer el state
 
+
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -34,42 +36,48 @@ export default function Home() {
 
   return (
     <div>
-      <div>
-        <Navbar
-          setCurrentPage={setCurrentPage}
-          order={order}
-          setOrder={setOrder}
-          handleCleanFilters={handleCleanFilters}
-        />
-      </div>
-      <div className={s.dogs}>
-        {currentDogs &&
-          currentDogs.map((el) => {
-            return (
-              <div className={s.card} >
-                <Card
-                  id={el.id}
-                  name={el.name}
-                  image={el.image}
-                  temperament={
-                    el.createdInDb
-                      ? el.temperaments.map((el) => el.name + ", ")
-                      : el.temperament
-                  }
-                  min_weight={el.min_weight}
-                  max_weight={el.max_weight}
-                />
-              </div>
-            );
-          })}
-      </div>
-      <div className={s.paginado}>
-        <Paginado
-          dogsPerPage={dogsPerPage}
-          allDogs={allDogs.length}
-          paginado={paginado}
-        />
-      </div>
+      {currentDogs.length > 0 ? (
+        <div>
+          <div>
+            <Navbar
+              setCurrentPage={setCurrentPage}
+              order={order}
+              setOrder={setOrder}
+              handleCleanFilters={handleCleanFilters}
+            />
+          </div>
+          <div className={s.dogs}>
+            {currentDogs &&
+              currentDogs.map((el) => {
+                return (
+                  <div className={s.card}>
+                    <Card
+                      id={el.id}
+                      name={el.name}
+                      image={el.image}
+                      temperament={
+                        el.createdInDb
+                          ? el.temperaments.map((el) => el.name + ", ")
+                          : el.temperament
+                      }
+                      min_weight={el.min_weight}
+                      max_weight={el.max_weight}
+                    />
+                  </div>
+                );
+              })}
+          </div>
+          <div className={s.paginado}>
+            <Paginado
+              dogsPerPage={dogsPerPage}
+              allDogs={allDogs.length}
+              paginado={paginado}
+            />
+          </div>
+        </div>
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 }
