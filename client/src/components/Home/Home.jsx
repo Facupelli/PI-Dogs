@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDogs } from "../../actions/index";
 import Navbar from "../Navbar/Navbar";
-import Card from "../Card";
-import Paginado from "../Paginado";
+import Card from "../Card/Card";
+import Paginado from "../Paginado/Paginado";
 import s from "./Home.module.css";
 
 export default function Home() {
@@ -41,11 +41,12 @@ export default function Home() {
           setOrder={setOrder}
           handleCleanFilters={handleCleanFilters}
         />
-
+      </div>
+      <div className={s.dogs}>
         {currentDogs &&
           currentDogs.map((el) => {
             return (
-              <div>
+              <div className={s.card} >
                 <Card
                   id={el.id}
                   name={el.name}
@@ -61,7 +62,8 @@ export default function Home() {
               </div>
             );
           })}
-
+      </div>
+      <div className={s.paginado}>
         <Paginado
           dogsPerPage={dogsPerPage}
           allDogs={allDogs.length}

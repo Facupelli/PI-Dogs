@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SearchBar from "../SearchBar";
-import Filters from "../Filters";
+import SearchBar from "../SearchBar/SearchBar";
+import Filters from "../Filters/Filters";
+import s from "./Navbar.module.css";
 
 export default function Navbar({
   setCurrentPage,
@@ -9,22 +10,23 @@ export default function Navbar({
   setOrder,
   handleCleanFilters,
 }) {
-
   return (
     <div>
-        
-      <h1>THE DOG APP</h1>
+      <div className={s.navbar}>
+        <p>THE DOG APP</p>
 
-      <Link to="/createbreed">Crear Raza</Link>
+        <SearchBar setCurrentPage={setCurrentPage} />
 
-      <SearchBar setCurrentPage={setCurrentPage} />
-
-      <Filters
-        setCurrentPage={setCurrentPage}
-        order={order}
-        setOrder={setOrder}
-        handleCleanFilters={handleCleanFilters}
-      />
+        <Link to="/createbreed" className={s.createBreed}>CREATE BREED</Link>
+      </div>
+      <div>
+        <Filters
+          setCurrentPage={setCurrentPage}
+          order={order}
+          setOrder={setOrder}
+          handleCleanFilters={handleCleanFilters}
+        />
+      </div>
     </div>
   );
 }

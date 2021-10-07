@@ -1,0 +1,13 @@
+.container{
+    margin: 0px;
+}
+
+.ul{
+    display: flex;
+    justify-content: center;
+}
+
+.pageNumber{
+    list-style-type: none;
+    padding: 10px;
+}

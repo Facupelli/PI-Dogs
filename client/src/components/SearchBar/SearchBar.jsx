@@ -1,11 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getDogsByBreed } from "../actions";
+import { getDogsByBreed } from "../../actions";
+import s from './SearchBar.module.css'
 
 export default function SearchBar ({setCurrentPage}) {
   
-  // const allDogs = useSelector((state) => state.dogs);
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState("");
@@ -28,7 +28,7 @@ export default function SearchBar ({setCurrentPage}) {
  
   return (
     <div>
-      <form onSubmit={e => handleSubmit(e)}>
+      <form onSubmit={e => handleSubmit(e)} className={s.searchbar}>
         <div>
           <input
             type="text"

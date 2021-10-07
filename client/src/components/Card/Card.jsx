@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import s from './Card.module.css'
 
 export default function Card({
   id,
   name,
   image,
   temperament,
-  temperaments,
   min_weight,
   max_weight,
 }) {
@@ -19,7 +19,7 @@ export default function Card({
   }
 
   return (
-    <div>
+    <div className={s.card}>
       <Link to={"/home/" + id}>
         <img src={picture} alt="not found" width="200px" height="200px" />
         <h3>{name}</h3>

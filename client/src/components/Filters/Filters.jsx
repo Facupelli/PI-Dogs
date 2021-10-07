@@ -6,7 +6,8 @@ import {
   filterByTemperament,
   orderByBreed,
   orderByWeight,
-} from "../actions";
+} from "../../actions";
+import s from './Filters.module.css'
 
 
 export default function Filters({ setCurrentPage, order, setOrder, handleCleanFilters }) {
@@ -43,8 +44,8 @@ export default function Filters({ setCurrentPage, order, setOrder, handleCleanFi
 
  
   return (
-    <div>
-      <div>
+    <div className={s.container}>
+      <div className={s.filter}>
         <p>Filter by</p>
         <select onChange={(e) => handleFilterTemps(e)}>
           <option value="All">All temperaments</option>
@@ -58,7 +59,7 @@ export default function Filters({ setCurrentPage, order, setOrder, handleCleanFi
           <option value="created_breed">Created Breed</option>
         </select>
       </div>
-      <div>
+      <div className={s.order}>
         <p>Order by</p>
         <select onChange={(e) => handleOrderByBreed(e)}>
           <option value="breed_asc">Breed Ascendente</option>
