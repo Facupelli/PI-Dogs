@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { getTemperaments, postBreed } from "../../actions";
 import Validate from "../Validate/Validate";
+import ValidateMeasures from "../Validate/ValidateMeasures";
 import s from "./CreateBreed.module.css";
 
 export default function CreateBreed() {
@@ -10,14 +11,21 @@ export default function CreateBreed() {
   const history = useHistory(); // te lleva a una ruta especifica
   const temperaments = useSelector((state) => state.temperaments);
 
+  useEffect(() => {
+    dispatch(getTemperaments());
+  }, []);
+
   const [input, setInput] = useState({
     name: "",
-    max_height: "",
-    min_height: "",
-    max_weight: "",
-    min_weight: "",
     life_span: "",
     temperament: [],
+  });
+
+  const [measures, setMeasures] = useState({
+    min_height: "",
+    max_height: "",
+    min_weight: "",
+    max_weight: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -27,13 +35,41 @@ export default function CreateBreed() {
       ...input,
       [e.target.name]: e.target.value,
     });
-
     setErrors(
       Validate({
         ...input,
         [e.target.name]: e.target.value,
       })
     );
+  }
+
+  function handleHeightChange(e) {
+    setMeasures({
+      ...measures,
+      [e.target.name]: e.target.value,
+    });
+
+    setErrors(
+      ValidateMeasures({
+        ...measures,
+        [e.target.name]: e.target.value,
+      })
+    );
+  }
+
+  function handleWeightChange(e) {
+    setMeasures({
+      ...measures,
+      [e.target.name]: e.target.value,
+    });
+
+    setErrors(
+      ValidateMeasures({
+        ...measures,
+        [e.target.name]: e.target.value,
+      })
+    );
+    console.log(measures, input);
   }
 
   function handleTempSelect(e) {
@@ -50,24 +86,28 @@ export default function CreateBreed() {
     });
   }
 
-  useEffect(() => {
-    dispatch(getTemperaments());
-  }, []);
-
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(input);
+    console.log(input, measures);
     try {
-      dispatch(postBreed(input));
+      dispatch(postBreed({
+        ...input,
+        height: `${measures.min_height} - ${measures.max_height}`,
+        weight:`${measures.min_weight} - ${measures.max_weight}`,
+      }));
       alert("Breed created!");
       setInput({
         name: "",
-        max_height: "",
-        min_height: "",
-        max_weight: "",
-        min_weight: "",
+        height: "",
+        weight: "",
         life_span: "",
         temperament: [],
+      });
+      setMeasures({
+        min_height: "",
+        max_height: "",
+        min_weight: "",
+        max_weight: "",
       });
       history.push("/home"); // redirigimos al home
     } catch (e) {
@@ -107,9 +147,11 @@ export default function CreateBreed() {
                       name="min_height"
                       placeholder="Ex: 24"
                       value={input.min_height}
-                      onChange={(e) => handleInputChange(e)}
+                      onChange={(e) => handleHeightChange(e)}
                     />
-                    {errors.min_height && <p className={s.error}>{errors.min_height}</p>}
+                    {errors.min_height && (
+                      <p className={s.error}>{errors.min_height}</p>
+                    )}
                   </div>
                   <div>
                     <label>Max Height:</label>
@@ -118,9 +160,11 @@ export default function CreateBreed() {
                       name="max_height"
                       placeholder="Ex: 32"
                       value={input.max_height}
-                      onChange={(e) => handleInputChange(e)}
+                      onChange={(e) => handleHeightChange(e)}
                     />
-                    {errors.max_height && <p className={s.error}>{errors.max_height}</p>}
+                    {errors.max_height && (
+                      <p className={s.error}>{errors.max_height}</p>
+                    )}
                   </div>
                 </fieldset>
               </div>
@@ -133,9 +177,11 @@ export default function CreateBreed() {
                       name="min_weight"
                       placeholder="Ex: 22"
                       value={input.min_weight}
-                      onChange={(e) => handleInputChange(e)}
+                      onChange={(e) => handleWeightChange(e)}
                     />
-                    {errors.min_weight && <p className={s.error}>{errors.min_weight}</p>}
+                    {errors.min_weight && (
+                      <p className={s.error}>{errors.min_weight}</p>
+                    )}
                   </div>
                   <div>
                     <label>Max Weight:</label>
@@ -144,9 +190,11 @@ export default function CreateBreed() {
                       name="max_weight"
                       placeholder="Ex: 38"
                       value={input.max_weight}
-                      onChange={(e) => handleInputChange(e)}
+                      onChange={(e) => handleWeightChange(e)}
                     />
-                    {errors.max_weight && <p className={s.error}>{errors.max_weight}</p>}
+                    {errors.max_weight && (
+                      <p className={s.error}>{errors.max_weight}</p>
+                    )}
                   </div>
                 </fieldset>
               </div>
@@ -161,7 +209,9 @@ export default function CreateBreed() {
                 placeholder="Ex: 10"
                 onChange={(e) => handleInputChange(e)}
               />
-              {errors.life_span && <p className={s.error}>{errors.life_span}</p>}
+              {errors.life_span && (
+                <p className={s.error}>{errors.life_span}</p>
+              )}
             </div>
             <div className={s.name}>
               <label>Temperaments:</label>
@@ -189,7 +239,9 @@ export default function CreateBreed() {
               </ul>
             </div>
             <div>
-              <button type="submit" class={s.createButton}>Create Breed</button>
+              <button type="submit" class={s.createButton}>
+                Create Breed
+              </button>
             </div>
           </form>
         </div>

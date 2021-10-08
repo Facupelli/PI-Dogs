@@ -37,10 +37,8 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   const {
     name,
-    min_height,
-    max_height,
-    min_weight,
-    max_weight,
+    height,
+    weight,
     life_span,
     createdInDb,
     temperament,
@@ -50,10 +48,8 @@ router.post("/", async (req, res) => {
     let dogCreated = await Dog.create({
       name,
       life_span,
-      min_weight,
-      max_weight,
-      min_height,
-      max_height,
+      weight,
+      height,
       createdInDb,
     });
 

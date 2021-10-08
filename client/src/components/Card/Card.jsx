@@ -7,8 +7,7 @@ export default function Card({
   name,
   image,
   temperament,
-  min_weight,
-  max_weight,
+  weight,
 }) {
   let picture;
   if (!image) {
@@ -35,7 +34,7 @@ export default function Card({
         <div className={s.container}>
           <p className={s.weight}>Weight:</p>
           <p className={s.number}>
-            {min_weight} - {max_weight} kg
+            {weight} kg
           </p>
         </div>
       </div>

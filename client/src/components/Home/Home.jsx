@@ -60,8 +60,7 @@ export default function Home() {
                           ? el.temperaments.map((el) => el.name + ", ")
                           : el.temperament
                       }
-                      min_weight={el.min_weight}
-                      max_weight={el.max_weight}
+                      weight={el.weight}
                     />
                   </div>
                 );

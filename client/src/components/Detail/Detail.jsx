@@ -33,8 +33,6 @@ export default function Detail() {
             <img
               src={dog[0].image ? dog[0].image : url}
               alt="img not found"
-              width="200px"
-              height="200px"
             />
           </div>
           <div className={s.infoContainer}>
@@ -47,13 +45,13 @@ export default function Detail() {
             <div className={s.measuresContainer}>
               <p className={s.measure}>Weight:</p>
               <p className={s.measure}>
-                {dog[0].min_weight} - {dog[0].max_weight} kg
+                {dog[0].weight} kg
               </p>
             </div>
             <div className={s.measuresContainer}>
               <p className={s.measure}>Height:</p>
               <p className={s.measure}>
-                {dog[0].min_height} - {dog[0].max_height} cm
+                {dog[0].height} cm
               </p>
             </div>
             <div className={s.measuresContainer}>
