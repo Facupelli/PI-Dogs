@@ -5,7 +5,8 @@ import { getDogs } from "../../actions/index";
 import Navbar from "../Navbar/Navbar";
 import Card from "../Card/Card";
 import Paginado from "../Paginado/Paginado";
-import Loading from '../Loading/Loading'
+import Loading from "../Loading/Loading";
+import Filters from "../Filters/Filters";
 import s from "./Home.module.css";
 
 export default function Home() {
@@ -21,10 +22,9 @@ export default function Home() {
   const firstDog = lastDog - dogsPerPage;
   const currentDogs = allDogs.slice(firstDog, lastDog); //me trae del reducer el state
 
-
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
-    window.scrollTo({top:0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -42,6 +42,14 @@ export default function Home() {
           <div>
             <Navbar
               setCurrentPage={setCurrentPage}
+              setOrder={setOrder}
+              handleCleanFilters={handleCleanFilters}
+            />
+          </div>
+          <div>
+            <Filters
+              setCurrentPage={setCurrentPage}
+              order={order}
               setOrder={setOrder}
               handleCleanFilters={handleCleanFilters}
             />

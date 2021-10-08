@@ -2,21 +2,18 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-
   padding-top: 20px;
   padding-bottom: 20px;
   background: #2b3142;
 
   box-shadow: rgba(0, 0, 0, 0.397) 0px 3px 6px;
-
-
 }
 
-.navbar p {
+.dogApp {
   font-size: 20px;
   font-weight: 700;
   color: white;
-
+  text-decoration: none;
   margin: 0px;
 }
 
