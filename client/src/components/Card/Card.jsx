@@ -26,9 +26,11 @@ export default function Card({
         </Link>
       </div>
       <div>
-        <Link to={"/home/" + id} className={s.name}>
-          <p>{name}</p>
-        </Link>
+        <div className={s.nameContainer}>
+          <Link to={"/home/" + id} className={s.name}>
+            <p>{name}</p>
+          </Link>
+        </div>
         <p className={s.temperament}>{temperament}</p>
         <div className={s.container}>
           <p className={s.weight}>Weight:</p>

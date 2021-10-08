@@ -11,7 +11,6 @@ import s from "./Filters.module.css";
 
 export default function Filters({
   setCurrentPage,
-  order,
   setOrder,
   handleCleanFilters,
 }) {
@@ -36,14 +35,14 @@ export default function Filters({
     e.preventDefault();
     dispatch(orderByBreed(e.target.value));
     setCurrentPage(1);
-    setOrder(`Ordenado ${e.target.value}`);
+    setOrder( e.target.value);
   }
 
   function handleOrderByWeight(e) {
     e.preventDefault();
     dispatch(orderByWeight(e.target.value));
     setCurrentPage(1);
-    setOrder(`Ordenado ${e.target.value}`);
+    setOrder(e.target.value);
   }
 
   return (
@@ -65,11 +64,11 @@ export default function Filters({
       </div>
       <div className={s.filter}>
         <p>Order by</p>
-        <select onChange={(e) => handleOrderByBreed(e)} className={s.select}>
+        <select onChange={(e) => handleOrderByBreed(e)} className={s.select} allowClear='true'>
           <option value="" disabled selected>
             Breed 
           </option>
-          <option value="breed_asc">Ascendant (A-A)</option>
+          <option value="breed_asc">Ascendant (A-Z)</option>
           <option value="breed_desc">Descendant (Z-A)</option>
         </select>
         <select onChange={(e) => handleOrderByWeight(e)} className={s.select}>

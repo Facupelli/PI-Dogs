@@ -59,7 +59,7 @@ function rootReducer(state = initialState, action) {
     case ORDER_BY_BREED:
       const sortedByBreed =
         action.payload === "breed_asc"
-          ? state.allDogs.sort(function (a, b) {
+          ? state.dogs.sort(function (a, b) {
               if (a.name > b.name) {
                 return 1;
               }
@@ -68,7 +68,7 @@ function rootReducer(state = initialState, action) {
               }
               return 0;
             })
-          : state.allDogs.sort(function (a, b) {
+          : state.dogs.sort(function (a, b) {
               if (a.name > b.name) {
                 return -1;
               }
@@ -84,7 +84,7 @@ function rootReducer(state = initialState, action) {
     case ORDER_BY_WEIGHT:
       const sortedByWeight =
         action.payload === "weight_asc"
-          ? state.allDogs.sort(function (a, b) {
+          ? state.dogs.sort(function (a, b) {
               if (a.min_weight > b.min_weight) {
                 return 1;
               }
@@ -93,7 +93,7 @@ function rootReducer(state = initialState, action) {
               }
               return 0;
             })
-          : state.allDogs.sort(function (a, b) {
+          : state.dogs.sort(function (a, b) {
               if (a.min_weight > b.min_weight) {
                 return -1;
               }

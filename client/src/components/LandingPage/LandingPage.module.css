@@ -22,6 +22,7 @@ html, body {
 
 .welcome p{
     font-size: 32px;
+    color: #2b3142;
     font-family:'Roboto',sans-serif;
     padding: 0;
     margin:0;
@@ -30,22 +31,38 @@ html, body {
 .welcome h1{
     font-family:'Roboto',sans-serif;
     font-size: 40px;
+    color: #2b3142;
     padding-top: 5px;
     margin:0;
 }
 
 .welcome button{
-    padding: 10px 20px;
-    margin-top:15px;
+    padding: 20px 30px;
+    margin-top:0px;
     border-radius:0.15em;
     text-decoration:none;
     font-family:'Roboto',sans-serif;
-    font-weight:400;
+    font-weight:600;
+    font-size: 18px;
+    margin-top: 10px;
     color:#FFFFFF;
     background-color:#2b3142;
-    box-shadow:inset 0 -9.6px 0 -6px #1f2430;
+    box-shadow:inset 0 -9.6px 0 -6px #13161f;
     text-align:center;
     border: none;
     outline: none;
     cursor: pointer;
+  backface-visibility: hidden;
+
+  transform: scale(.80);
+
+
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
+
+    .welcome button:hover{
+        color:#2b3142;
+        transform: scale(1) translateZ(0);
+        background-color: #FFFFFF;
+
+    }

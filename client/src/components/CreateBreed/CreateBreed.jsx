@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { getTemperaments, postBreed } from "../../actions";
-import Validate from "../Validate";
+import Validate from "../Validate/Validate";
 import s from "./CreateBreed.module.css";
 
 export default function CreateBreed() {
@@ -95,13 +95,13 @@ export default function CreateBreed() {
                 value={input.name}
                 onChange={(e) => handleInputChange(e)}
               />
-              {errors.name && <p>{errors.name}</p>}
+              {errors.name && <p className={s.error}>{errors.name}</p>}
             </div>
             <div className={s.containerOne}>
               <div>
                 <fieldset>
                   <div className={s.height}>
-                    <label>Min height:</label>
+                    <label>Min Height:</label>
                     <input
                       type="text"
                       name="min_height"
@@ -109,10 +109,10 @@ export default function CreateBreed() {
                       value={input.min_height}
                       onChange={(e) => handleInputChange(e)}
                     />
-                    {errors.min_height && <p>{errors.min_height}</p>}
+                    {errors.min_height && <p className={s.error}>{errors.min_height}</p>}
                   </div>
                   <div>
-                    <label>Max height:</label>
+                    <label>Max Height:</label>
                     <input
                       type="text"
                       name="max_height"
@@ -120,14 +120,14 @@ export default function CreateBreed() {
                       value={input.max_height}
                       onChange={(e) => handleInputChange(e)}
                     />
-                    {errors.max_height && <p>{errors.max_height}</p>}
+                    {errors.max_height && <p className={s.error}>{errors.max_height}</p>}
                   </div>
                 </fieldset>
               </div>
               <div>
                 <fieldset>
                   <div className={s.weight}>
-                    <label>Min weight:</label>
+                    <label>Min Weight:</label>
                     <input
                       type="text"
                       name="min_weight"
@@ -135,10 +135,10 @@ export default function CreateBreed() {
                       value={input.min_weight}
                       onChange={(e) => handleInputChange(e)}
                     />
-                    {errors.min_weight && <p>{errors.min_weight}</p>}
+                    {errors.min_weight && <p className={s.error}>{errors.min_weight}</p>}
                   </div>
                   <div>
-                    <label>Max weight:</label>
+                    <label>Max Weight:</label>
                     <input
                       type="text"
                       name="max_weight"
@@ -146,7 +146,7 @@ export default function CreateBreed() {
                       value={input.max_weight}
                       onChange={(e) => handleInputChange(e)}
                     />
-                    {errors.max_weight && <p>{errors.max_weight}</p>}
+                    {errors.max_weight && <p className={s.error}>{errors.max_weight}</p>}
                   </div>
                 </fieldset>
               </div>
@@ -161,7 +161,7 @@ export default function CreateBreed() {
                 placeholder="Ex: 10"
                 onChange={(e) => handleInputChange(e)}
               />
-              {errors.life_span && <p>{errors.life_span}</p>}
+              {errors.life_span && <p className={s.error}>{errors.life_span}</p>}
             </div>
             <div className={s.name}>
               <label>Temperaments:</label>

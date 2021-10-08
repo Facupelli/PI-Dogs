@@ -24,6 +24,7 @@ export default function Home() {
 
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
+    window.scrollTo({top:0, behavior: 'smooth'});
   };
 
   useEffect(() => {
@@ -41,7 +42,6 @@ export default function Home() {
           <div>
             <Navbar
               setCurrentPage={setCurrentPage}
-              order={order}
               setOrder={setOrder}
               handleCleanFilters={handleCleanFilters}
             />
