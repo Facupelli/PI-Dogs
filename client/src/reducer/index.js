@@ -107,6 +107,7 @@ function rootReducer(state = initialState, action) {
         dogs: sortedByWeight,
       };
     case GET_DOGS_BY_BREED:
+      console.log(action.payload);
       return {
         ...state,
         dogs: action.payload,

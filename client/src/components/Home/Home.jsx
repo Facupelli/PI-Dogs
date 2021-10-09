@@ -22,7 +22,7 @@ export default function Home() {
   const firstDog = lastDog - dogsPerPage;
   const currentDogs = allDogs.slice(firstDog, lastDog); //me trae del reducer el state
 
-  const paginado = (pageNumber) => {
+  const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -78,7 +78,8 @@ export default function Home() {
             <Paginado
               dogsPerPage={dogsPerPage}
               allDogs={allDogs.length}
-              paginado={paginado}
+              paginate={paginate}
+              currentPage={currentPage}
             />
           </div>
         </div>

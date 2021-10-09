@@ -29,6 +29,7 @@ export default function CreateBreed() {
   });
 
   const [errors, setErrors] = useState({});
+  
 
   function handleInputChange(e) {
     setInput({
@@ -37,10 +38,10 @@ export default function CreateBreed() {
     });
     setErrors(
       Validate({
-        ...input,
         [e.target.name]: e.target.value,
       })
     );
+    console.log(errors);
   }
 
   function handleHeightChange(e) {
@@ -51,7 +52,6 @@ export default function CreateBreed() {
 
     setErrors(
       ValidateMeasures({
-        ...measures,
         [e.target.name]: e.target.value,
       })
     );
@@ -65,11 +65,10 @@ export default function CreateBreed() {
 
     setErrors(
       ValidateMeasures({
-        ...measures,
         [e.target.name]: e.target.value,
       })
     );
-    console.log(measures, input);
+    console.log(errors);
   }
 
   function handleTempSelect(e) {

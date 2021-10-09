@@ -31,7 +31,7 @@ router.get("/:id", async (req, res) => {
   }
   dogId.length
     ? res.status(200).send(dogId)
-    : res.status(404).send("No se encontró la raza");
+    : res.status(404).send("Breed not found");
 });
 
 router.post("/", async (req, res) => {
