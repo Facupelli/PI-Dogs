@@ -8,17 +8,23 @@ export default function Paginado({
   currentPage,
 }) {
   const pageNumbers = [];
+  console.log(!pageNumbers);
 
-  for (let i = 1; i < Math.ceil(allDogs / dogsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(allDogs / dogsPerPage); i++) {
     pageNumbers.push(i);
   }
 
   let prevDisabled, nextDisabled, prevStyle, nextStyle;
-  if(currentPage === 1){
+  if(!pageNumbers[1]){
+    nextStyle = s.disabled;
+    prevStyle = s.disabled;
+    prevDisabled = true;
+    nextDisabled = true;
+  }else if(currentPage === 1){
     prevDisabled = true;
     prevStyle = s.disabled;
     nextStyle = s.button;
-  }else if(currentPage === pageNumbers[pageNumbers.length - 1] + 1){
+  }else if(currentPage === pageNumbers[pageNumbers.length - 1]){
     nextDisabled = true;
     nextStyle = s.disabled;
     prevStyle = s.button;
@@ -29,6 +35,7 @@ export default function Paginado({
     nextStyle = s.button;
   }
 
+ 
   
   
 
@@ -54,7 +61,7 @@ export default function Paginado({
         next
       </button>
       <button
-        onClick={() => paginate(pageNumbers[pageNumbers.length - 1] + 1)}
+        onClick={() => paginate(pageNumbers[pageNumbers.length - 1] )}
         className={s.button}
       >
         last

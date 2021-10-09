@@ -6,6 +6,10 @@
   box-shadow: rgba(114, 91, 91, 0.24) 0px 3px 8px;
 }
 
+  .card:hover{
+    box-shadow: rgba(114, 91, 91, 0.24) 0px 3px 8px inset;
+  }
+
 .imageContainer img {
   width: 100%;
   height: 300px;
