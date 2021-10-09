@@ -140,8 +140,9 @@ export default function CreateBreed() {
             <div className={s.containerOne}>
               <div>
                 <fieldset>
+                  <legend>Height</legend>
                   <div className={s.height}>
-                    <label>Min Height:</label>
+                    <label>Minimum:</label>
                     <input
                       type="text"
                       name="min_height"
@@ -154,7 +155,7 @@ export default function CreateBreed() {
                     )}
                   </div>
                   <div>
-                    <label>Max Height:</label>
+                    <label>Maximum:</label>
                     <input
                       type="text"
                       name="max_height"
@@ -170,8 +171,9 @@ export default function CreateBreed() {
               </div>
               <div>
                 <fieldset>
+                  <legend>Weight:</legend>
                   <div className={s.weight}>
-                    <label>Min Weight:</label>
+                    <label>Minimum:</label>
                     <input
                       type="text"
                       name="min_weight"
@@ -184,7 +186,7 @@ export default function CreateBreed() {
                     )}
                   </div>
                   <div>
-                    <label>Max Weight:</label>
+                    <label>Maximum:</label>
                     <input
                       type="text"
                       name="max_weight"
