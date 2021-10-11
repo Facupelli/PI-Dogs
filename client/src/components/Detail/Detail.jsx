@@ -5,7 +5,6 @@ import { getDetail, cleanDetail } from "../../actions";
 import { Link } from "react-router-dom";
 import s from "./Detail.module.css";
 import Loading from "../Loading/Loading";
-import Navbar from "../Navbar/Navbar";
 
 export default function Detail() {
   const dispatch = useDispatch();

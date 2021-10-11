@@ -71,6 +71,7 @@
 .containerOne{
     display: flex;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 .weight, .height{
@@ -113,7 +114,7 @@ input, select{
     margin: auto;
     background: #ffffff;
     text-decoration: none;
-    border: 0.5px solid #ED6A5A;
+    border: 0.5px solid #457b9d;
     border-radius: 5px;
     padding: 5px;
 }
@@ -135,7 +136,7 @@ label{
 fieldset{
  border: 1px solid #2b3142;   
  border-radius: 5px;
- padding: 20px;
+ padding: 10px 20px 20px 20px;
  margin-right: 10px;
  margin-left: 10px;
  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 2px;

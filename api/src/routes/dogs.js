@@ -4,45 +4,47 @@ const { getAllDogs } = require("../infoapi/infoapi");
 const { Dog, Temperament } = require("../db");
 
 router.get("/", async (req, res) => {
-  const name = req.query.name;
-  let totalDogs = await getAllDogs();
-  if (name) {
-    let dogName = await totalDogs.filter((dog) =>
-      dog.name.toLowerCase().includes(name.toLowerCase())
-    );
-    
-    dogName.length
-      ? res.status(200).send(dogName)
-      : res.status(404).send("No se encontró la raza");
-  } else {
-    res.status(200).send(totalDogs);
+  try {
+    const name = req.query.name;
+    let totalDogs = await getAllDogs();
+    if (name) {
+      let dogName = await totalDogs.filter((dog) =>
+        dog.name.toLowerCase().includes(name.toLowerCase())
+      );
+
+      dogName.length
+        ? res.status(200).send(dogName)
+        : res.status(404).send("No se encontró la raza");
+    } else {
+      res.status(200).send(totalDogs);
+    }
+  } catch (e) {
+    return res.send(e);
   }
 });
 
 router.get("/:id", async (req, res) => {
-  const { id } = req.params;
-  const totalDogs = await getAllDogs();
-  const regExp = /[a-zA-Z]/g;
-  let dogId;
-  if (regExp.test(id)) {
-    dogId = await totalDogs.filter((dog) => dog.id === id);
-  } else {
-    dogId = await totalDogs.filter((dog) => dog.id === Number(id));
+  try {
+    const { id } = req.params;
+    const totalDogs = await getAllDogs();
+    const regExp = /[a-zA-Z]/g;
+    let dogId;
+    if (regExp.test(id)) {
+      dogId = await totalDogs.filter((dog) => dog.id === id);
+    } else {
+      dogId = await totalDogs.filter((dog) => dog.id === Number(id));
+    }
+    dogId.length
+      ? res.status(200).send(dogId)
+      : res.status(404).send("Breed not found");
+  } catch (e) {
+    return res.send(e);
   }
-  dogId.length
-    ? res.status(200).send(dogId)
-    : res.status(404).send("Breed not found");
 });
 
 router.post("/", async (req, res) => {
-  const {
-    name,
-    height,
-    weight,
-    life_span,
-    createdInDb,
-    temperament,
-  } = req.body;
+  const { name, height, weight, life_span, createdInDb, temperament } =
+    req.body;
 
   try {
     let dogCreated = await Dog.create({

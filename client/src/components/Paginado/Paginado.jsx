@@ -8,36 +8,31 @@ export default function Paginado({
   currentPage,
 }) {
   const pageNumbers = [];
-  console.log(!pageNumbers);
 
   for (let i = 1; i <= Math.ceil(allDogs / dogsPerPage); i++) {
     pageNumbers.push(i);
   }
 
   let prevDisabled, nextDisabled, prevStyle, nextStyle;
-  if(!pageNumbers[1]){
+  if (!pageNumbers[1]) {
     nextStyle = s.disabled;
     prevStyle = s.disabled;
     prevDisabled = true;
     nextDisabled = true;
-  }else if(currentPage === 1){
+  } else if (currentPage === 1) {
     prevDisabled = true;
     prevStyle = s.disabled;
     nextStyle = s.button;
-  }else if(currentPage === pageNumbers[pageNumbers.length - 1]){
+  } else if (currentPage === pageNumbers[pageNumbers.length - 1]) {
     nextDisabled = true;
     nextStyle = s.disabled;
     prevStyle = s.button;
-  }else{
+  } else {
     prevDisabled = false;
     nextDisabled = false;
     prevStyle = s.button;
     nextStyle = s.button;
   }
-
- 
-  
-  
 
   return (
     <div className={s.container}>
@@ -51,17 +46,25 @@ export default function Paginado({
             );
           })}
       </ul> */}
-      <button onClick={() => paginate(pageNumbers[0])} className={s.button} > 
+      <button onClick={() => paginate(pageNumbers[0])} className={s.button}>
         first
       </button>
-      <button onClick={() => paginate(currentPage - 1)} className={prevStyle} disabled={prevDisabled}>
+      <button
+        onClick={() => paginate(currentPage - 1)}
+        className={prevStyle}
+        disabled={prevDisabled}
+      >
         prev
       </button>
-      <button onClick={() => paginate(currentPage + 1)} className={nextStyle} disabled={nextDisabled}>
+      <button
+        onClick={() => paginate(currentPage + 1)}
+        className={nextStyle}
+        disabled={nextDisabled}
+      >
         next
       </button>
       <button
-        onClick={() => paginate(pageNumbers[pageNumbers.length - 1] )}
+        onClick={() => paginate(pageNumbers[pageNumbers.length - 1])}
         className={s.button}
       >
         last

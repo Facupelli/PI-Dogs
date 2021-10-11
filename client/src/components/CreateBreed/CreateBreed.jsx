@@ -38,10 +38,11 @@ export default function CreateBreed() {
     });
     setErrors(
       Validate({
+        ...input,
+        ...measures,
         [e.target.name]: e.target.value,
       })
     );
-    console.log(errors);
   }
 
   function handleHeightChange(e) {
@@ -52,6 +53,8 @@ export default function CreateBreed() {
 
     setErrors(
       ValidateMeasures({
+        ...measures,
+        ...input,
         [e.target.name]: e.target.value,
       })
     );
@@ -65,10 +68,11 @@ export default function CreateBreed() {
 
     setErrors(
       ValidateMeasures({
+        ...measures,
+        ...input,
         [e.target.name]: e.target.value,
       })
     );
-    console.log(errors);
   }
 
   function handleTempSelect(e) {
@@ -110,7 +114,7 @@ export default function CreateBreed() {
       });
       history.push("/home"); // redirigimos al home
     } catch (e) {
-      console.log("error");
+      console.log(e);
     }
   }
 
@@ -135,6 +139,19 @@ export default function CreateBreed() {
                 onChange={(e) => handleInputChange(e)}
               />
               {errors.name && <p className={s.error}>{errors.name}</p>}
+            </div>
+            <div className={s.name}>
+              <label>Life Span:</label>
+              <input
+                type="text"
+                name="life_span"
+                value={input.life_span}
+                placeholder="Ex: 10"
+                onChange={(e) => handleInputChange(e)}
+              />
+              {errors.life_span && (
+                <p className={s.error}>{errors.life_span}</p>
+              )}
             </div>
             <div className={s.containerOne}>
               <div>
@@ -201,23 +218,11 @@ export default function CreateBreed() {
               </div>
             </div>
 
-            <div className={s.name}>
-              <label>Life Span:</label>
-              <input
-                type="text"
-                name="life_span"
-                value={input.life_span}
-                placeholder="Ex: 10"
-                onChange={(e) => handleInputChange(e)}
-              />
-              {errors.life_span && (
-                <p className={s.error}>{errors.life_span}</p>
-              )}
-            </div>
+            
             <div className={s.name}>
               <label>Temperaments:</label>
               <select
-                // multiple={true}
+                // multiple={false}
                 value={input.temperament}
                 onChange={(e) => handleTempSelect(e)}
               >
@@ -240,7 +245,7 @@ export default function CreateBreed() {
               </ul>
             </div>
             <div>
-              <button type="submit" class={s.createButton}>
+              <button type="submit" className={s.createButton}>
                 Create Breed
               </button>
             </div>

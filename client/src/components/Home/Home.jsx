@@ -13,14 +13,14 @@ export default function Home() {
   const dispatch = useDispatch();
   const allDogs = useSelector((state) => state.dogs); //es lo mismo que hacer mapStateToProps, me traigo todo lo que esta en el estado de dogs
   //paginado front
-  const [currentPage, setCurrentPage] = useState(1); 
+  const [currentPage, setCurrentPage] = useState(1);
   const dogsPerPage = 8;
 
   const [order, setOrder] = useState("");
 
   const lastDog = currentPage * dogsPerPage;
   const firstDog = lastDog - dogsPerPage;
-  const currentDogs = allDogs.slice(firstDog, lastDog); 
+  const currentDogs = allDogs.slice(firstDog, lastDog);
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -60,6 +60,7 @@ export default function Home() {
                 return (
                   <div className={s.card}>
                     <Card
+                      key={el.id}
                       id={el.id}
                       name={el.name}
                       image={el.image}
