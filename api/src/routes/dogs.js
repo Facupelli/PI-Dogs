@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 
       dogName.length
         ? res.status(200).send(dogName)
-        : res.status(404).send("No se encontró la raza");
+        : res.status(404).send("Breed not found");
     } else {
       res.status(200).send(totalDogs);
     }

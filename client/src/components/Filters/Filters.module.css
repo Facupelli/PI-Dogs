@@ -2,12 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    /* background: white; */
     padding-top: 10px;
     padding-bottom: 10px;
-
-
 }
 
 .filter{
@@ -26,26 +22,19 @@
     border: 1px solid #2b3142;
     border-radius: 2px;
     padding-top: 0px;
-
     height: 30px;
     margin: 0px 10px 0px 0px;
     outline: none;
     cursor: pointer;
-    
 }
 
     .select:focus{
         border: 2px solid #f4a15c;
     }
 
-.order{
-    margin: 0px 20px 0px 0px;
-}
 
-.order p{
-    color: #ffffff;
-    padding-right: 20px;
-    
+.select option{
+    color: #2b3142;
 }
 
 .button{

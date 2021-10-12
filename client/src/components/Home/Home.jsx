@@ -11,8 +11,8 @@ import s from "./Home.module.css";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const allDogs = useSelector((state) => state.dogs); //es lo mismo que hacer mapStateToProps, me traigo todo lo que esta en el estado de dogs
-  //paginado front
+  const allDogs = useSelector((state) => state.dogs); 
+  
   const [currentPage, setCurrentPage] = useState(1);
   const dogsPerPage = 8;
 
@@ -28,11 +28,17 @@ export default function Home() {
   };
 
   useEffect(() => {
-    dispatch(getDogs());
+    const dogs = async () => {
+      dispatch(getDogs());
+    }
+    dogs();
   }, []);
 
   function handleCleanFilters() {
-    dispatch(getDogs());
+    const dogs = async () => {
+      dispatch(getDogs());
+    }
+    dogs();
   }
 
   return (
