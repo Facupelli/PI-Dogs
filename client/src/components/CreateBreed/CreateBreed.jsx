@@ -8,7 +8,7 @@ import s from "./CreateBreed.module.css";
 
 export default function CreateBreed() {
   const dispatch = useDispatch();
-  const history = useHistory(); // te lleva a una ruta especifica
+  const history = useHistory(); 
   const temperaments = useSelector((state) => state.temperaments);
 
   useEffect(() => {
@@ -86,7 +86,7 @@ export default function CreateBreed() {
     setInput({
       ...input,
       temperament: input.temperament.filter((temp) => temp !== el),
-    });
+    }); 
   }
 
   function handleSubmit(e) {

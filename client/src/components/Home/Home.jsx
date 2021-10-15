@@ -28,17 +28,11 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const dogs = async () => {
       dispatch(getDogs());
-    }
-    dogs();
   }, []);
 
   function handleCleanFilters() {
-    const dogs = async () => {
       dispatch(getDogs());
-    }
-    dogs();
   }
 
   return (

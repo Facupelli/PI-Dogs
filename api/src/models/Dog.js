@@ -26,12 +26,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true
     },
-    createdInDb: { // para distinguir entre dogs de la api y los creados en la db
+    createdInDb: { 
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
     }
-
   },{
     timestamps: false
   });

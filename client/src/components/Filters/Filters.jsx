@@ -9,11 +9,8 @@ import {
 } from "../../actions";
 import s from "./Filters.module.css";
 
-export default function Filters({
-  setCurrentPage,
-  setOrder,
-  handleCleanFilters,
-}) {
+export default function Filters({setCurrentPage, setOrder, handleCleanFilters,}) {
+  
   const dispatch = useDispatch();
   const allTemperaments = useSelector((state) => state.temperaments);
 

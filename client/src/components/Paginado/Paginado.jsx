@@ -36,16 +36,7 @@ export default function Paginado({
 
   return (
     <div className={s.container}>
-      {/* <ul className={s.ul}>
-        {pageNumbers &&
-          pageNumbers.map((number) => {
-            return (
-              <li className={s.pageNumber}>
-                <a onClick={() => paginate(number)} >{number}</a>
-              </li>
-            );
-          })}
-      </ul> */}
+      
       <button onClick={() => paginate(pageNumbers[0])} className={s.button}>
         first
       </button>
@@ -69,6 +60,17 @@ export default function Paginado({
       >
         last
       </button>
+
+      {/* <ul className={s.ul}>
+        {pageNumbers &&
+          pageNumbers.map((number) => {
+            return (
+              <li className={s.pageNumber}>
+                <a onClick={() => paginate(number)} >{number}</a>
+              </li>
+            );
+          })}
+      </ul> */}
     </div>
   );
 }
