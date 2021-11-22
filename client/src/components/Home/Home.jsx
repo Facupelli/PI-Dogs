@@ -29,6 +29,7 @@ export default function Home() {
 
   useEffect(() => {
       dispatch(getDogs());
+      // eslint-disable-next-line
   }, []);
 
   function handleCleanFilters() {

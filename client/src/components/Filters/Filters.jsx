@@ -16,6 +16,7 @@ export default function Filters({setCurrentPage, setOrder, handleCleanFilters,})
 
   useEffect(() => {
     dispatch(getTemperaments());
+    // eslint-disable-next-line
   }, []);
 
   function handleFilterTemps(e) {

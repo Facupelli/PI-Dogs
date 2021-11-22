@@ -13,12 +13,14 @@ export default function Detail() {
 
   useEffect(() => {
     dispatch(getDetail(id));
+    // eslint-disable-next-line
   }, [dispatch]);
 
   useEffect(() => {
     return () => {
       dispatch(cleanDetail());
     };
+    // eslint-disable-next-line
   }, []);
 
   const dog = useSelector((state) => state.detail);

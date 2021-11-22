@@ -13,6 +13,7 @@ export default function CreateBreed() {
 
   useEffect(() => {
     dispatch(getTemperaments());
+    // eslint-disable-next-line
   }, []);
 
   const [input, setInput] = useState({
