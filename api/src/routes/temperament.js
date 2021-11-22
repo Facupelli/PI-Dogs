@@ -13,6 +13,7 @@ router.get("/", async (req, res) => {
       .map((el) => {
         for (let i = 0; i < el.length; i++) return el[i];
       });
+      console.log(temperament);
     temperament.forEach((el) => {
       Temperament.findOrCreate({
         where: { name: el },
