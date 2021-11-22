@@ -7,7 +7,7 @@ import CreateBreed from "./components/CreateBreed/CreateBreed";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/React">
       <div className="App">
         <Switch>
           <Route exact path='/' component={LandingPage}/>
