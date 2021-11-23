@@ -3,16 +3,18 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const routes = require("./routes/index.js");
+const cors = require("cors");
+
+server.use(cors());
+
 
 const server = express();
-const cors = require("cors");
 
 server.name = "API";
 
 server.listen(process.env.PORT || 3001, () => {
   console.log(`%s listening at ${process.env.PORT ? process.env.PORT : 3001}`);
 }); // permite que la nube asigne un port cuando deploye
-server.use(cors());
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
