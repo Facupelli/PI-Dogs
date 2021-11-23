@@ -59,7 +59,7 @@ export default function Home() {
             {currentDogs &&
               currentDogs.map((el) => {
                 return (
-                  <div className={s.card}>
+                  <div className={s.card} key={el.id}>
                     <Card
                       key={el.id}
                       id={el.id}
