@@ -12,7 +12,7 @@ server.name = "API";
 server.listen(process.env.PORT || 3001, () => {
   console.log(`%s listening at ${process.env.PORT ? process.env.PORT : 3001}`);
 }); // permite que la nube asigne un port cuando deploye
-server.use(cors(corsOptions));
+server.use(cors());
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
