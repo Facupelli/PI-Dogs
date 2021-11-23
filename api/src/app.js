@@ -6,12 +6,6 @@ const routes = require("./routes/index.js");
 
 const server = express();
 const cors = require("cors");
-const { ORIGIN } = process.env;
-
-const corsOptions = {
-  origin: ORIGIN,
-  credentials: true,
-};
 
 server.name = "API";
 
